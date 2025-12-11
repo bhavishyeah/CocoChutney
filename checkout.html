@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - CocoChutney</title>
+    <link rel="shortcut icon" href="https://cocochutney.com/favicon.png" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet" />
+ <link rel="stylesheet" href="checkout.css"> 
+</head>
+<body>
+    <div class="checkout-container">
+        <div class="checkout-header">
+            <button class="back-btn" id="back-to-cart-btn">
+                <i class="ri-arrow-left-line"></i>
+            </button>
+            <div>
+                <h1>Checkout</h1>
+                <p style="opacity: 0.9;">Review your order and complete payment</p>
+            </div>
+        </div>
+
+        <div class="checkout-content">
+            <div class="left-section">
+                <div class="section-title">
+                    <i class="ri-map-pin-line"></i>
+                    Select delivery address
+                </div>
+                <p style="color: #6c757d; margin-bottom: 25px;">You have a saved address in this location</p>
+
+                <div class="address-card add-address-card" id="addNewAddressCard">
+                    <div class="address-type">
+                        <i class="ri-add-circle-line"></i>
+                        Add New Address
+                    </div>
+                    <div class="address-details">
+                        Add a new delivery address
+                    </div>
+                    <button class="add-new-btn">ADD NEW</button>
+                </div>
+
+                <div id="checkout-items-container">
+                    <h2>Your Order Items</h2>
+                    <div id="checkout-items">
+                        </div>
+                </div>
+                
+                <div class="payment-section">
+                    <div class="section-title">
+                        <i class="ri-bank-card-line"></i>
+                        Payment Options
+                    </div>
+
+                    <div class="payment-options">
+                        <div class="payment-option selected" onclick="selectPayment(this, 'cod')">
+                            <div class="payment-icon cod-icon">
+                                <i class="ri-hand-coin-line"></i>
+                            </div>
+                            <div>
+                                <div style="font-weight: 600;">Cash on Delivery</div>
+                                <div style="color: #6c757d; font-size: 14px;">Pay when your order arrives</div>
+                            </div>
+                            <input type="radio" name="payment" value="cod" checked class="radio-input" style="margin-left: auto;">
+                        </div>
+
+                        <div class="payment-option" onclick="selectPayment(this, 'card')">
+                            <div class="payment-icon card-icon">
+                                <i class="ri-bank-card-line"></i>
+                            </div>
+                            <div>
+                                <div style="font-weight: 600;">Credit & Debit Cards</div>
+                                <div style="color: #6c757d; font-size: 14px;">Save and Pay via Cards</div>
+                            </div>
+                            <input type="radio" name="payment" value="card" class="radio-input" style="margin-left: auto;">
+                        </div>
+
+                        <div class="payment-option" onclick="selectPayment(this, 'upi')">
+                            <div class="payment-icon upi-icon">
+                                <i class="ri-smartphone-line"></i>
+                            </div>
+                            <div>
+                                <div style="font-weight: 600;">UPI Payment</div>
+                                <div style="color: #6c757d; font-size: 14px;">Pay using any UPI app</div>
+                            </div>
+                            <input type="radio" name="payment" value="upi" class="radio-input" style="margin-left: auto;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-section">
+                <div class="contactless-delivery">
+                    <label>
+                        <input type="checkbox" id="contactless">
+                        <div>
+                            <strong>Opt in for No-contact Delivery</strong><br>
+                            <small style="color: #6c757d;">Unwell, or avoiding contact? Please select no-contact delivery. Partner will safely place the order outside your door (not for COD)</small>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="apply-coupon" onclick="applyCoupon()">
+                    <i class="ri-coupon-3-line"></i>
+                    <strong>Apply Coupon</strong>
+                </div>
+
+                <div class="section-title">Bill Details</div>
+                <div class="bill-details">
+                    <div class="bill-row">
+                        <span>Item Total</span>
+                        <span>₹<span id="cart-subtotal">0.00</span></span>
+                    </div>
+                    <div class="bill-row">
+                        <span>Packaging Fee</span>
+                        <span>₹<span id="packaging-fee">0.00</span></span>
+                    </div>
+                    <div class="bill-row">
+                        <span>Delivery Fee | 3.5 kms <i class="ri-information-line"></i></span>
+                        <span>₹<span id="delivery-fee">0.00</span></span> 
+                    </div>
+                    <div class="bill-row discount">
+                        <span>Extra discount for you</span>
+                        <span>-₹<span id="discount">0.00</span></span>
+                    </div>
+                    <div class="bill-row">
+                        <span>GST (<span id="gst-percentage">5%</span>) <i class="ri-information-line"></i></span>
+                        <span>₹<span id="gst-amount">0.00</span></span>
+                    </div>
+                    <div class="bill-row total">
+                        <span>TO PAY</span>
+                        <span>₹<span id="final-total">0.00</span></span>
+                    </div>
+                </div>
+
+                <div class="savings-banner">
+                    <i class="ri-gift-line"></i>
+                    Savings of ₹<span id="total-savings">0.00</span>
+                </div>
+
+                <button class="place-order-btn" id="place-order-btn">
+                    PLACE ORDER
+                </button>
+
+                <div class="order-note">
+                    <strong>Review your order and address details to avoid cancellations</strong><br><br>
+                    <strong>Note:</strong> Please ensure your address and order details are correct. This order, if cancelled, is non-refundable.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="addressModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3>Add New Delivery Address</h3>
+            <form id="newAddressForm">
+                <label for="addressType">Address Type:</label>
+                <select id="addressType" name="addressType" required>
+                    <option value="Home">Home</option>
+                    <option value="Work">Work</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName" placeholder="e.g., John Doe" required>
+
+                <label for="flatHouseNo">Flat/House No.:</label>
+                <input type="text" id="flatHouseNo" name="flatHouseNo" placeholder="e.g., A-101" required>
+
+                <label for="buildingName">Building/Apartment Name:</label>
+                <input type="text" id="buildingName" name="buildingName" placeholder="e.g., Green Towers" required>
+
+                <label for="streetArea">Street/Area/Locality:</label>
+                <input type="text" id="streetArea" name="streetArea" placeholder="e.g., Sector 102, Dwarka Expressway" required>
+
+                <label for="city">City:</label>
+                <input type="text" id="city" name="city" placeholder="e.g., Gurgaon" required>
+
+                <label for="state">State:</label>
+                <input type="text" id="state" name="state" placeholder="e.g., Haryana" required>
+
+                <label for="pincode">Pincode:</label>
+                <input type="text" id="pincode" name="pincode" pattern="\d{6}" placeholder="e.g., 122001" title="Please enter a 6-digit pincode" required>
+
+                <label for="landmark">Landmark (Optional):</label>
+                <input type="text" id="landmark" name="landmark" placeholder="e.g., Near Satya The Hive">
+
+                <label for="contactNumber">Contact Number:</label>
+                <input type="text" id="contactNumber" name="contactNumber" pattern="\d{10}" placeholder="e.g., 9876543210" title="Please enter a 10-digit phone number" required>
+
+                <button type="submit">Save Address</button>
+            </form>
+        </div>
+    </div>
+
+
+    <script src="checkout.js"></script>
+    <script>
+        // These are helper functions for UI interaction, not directly related to data fetching/display from sessionStorage
+        function selectAddress(element) {
+            document.querySelectorAll('.address-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            element.classList.add('selected');
+        }
+        
+        function selectPayment(element, type) {
+            document.querySelectorAll('.payment-option').forEach(option => {
+                option.classList.remove('selected');
+                option.querySelector('.radio-input').checked = false;
+            });
+            element.classList.add('selected');
+            element.querySelector('.radio-input').checked = true;
+            console.log('Selected payment method:', type);
+        }
+
+        function applyCoupon() {
+            alert('Apply Coupon functionality would go here!');
+            // Implement coupon application logic
+        }
+    </script>
+</body>
+</html>

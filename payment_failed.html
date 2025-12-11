@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment Failed - CocoChutney</title>
+    <link rel="shortcut icon" href="https://cocochutney.com/favicon.png" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+        body {
+            background-color: #121212;
+            color: #f0f0f0;
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        #nav {
+  height: 13vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5vw;
+  padding: 0 12vw;
+  position: fixed;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+#nav img {
+  height: 4.5vw;
+}
+#nav h4 {
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 1.15vw;
+  cursor: pointer;
+}
+/* Default nav link styles */
+#nav h4 a {
+  color: white;
+  text-decoration: none;
+}
+
+/* On hover */
+#nav h4 a:hover {
+  color: orange;
+}
+
+@media (max-width: 480px) {
+  #nav {
+    padding: 0 2vw;
+    height: 60px;
+  }
+  #nav img {
+    height: 2vw;
+  }
+  #nav h4 {
+    font-size: 0.8vw;
+  }
+}
+
+/* ========== Hamburger Menu ========== */
+#hamburger-menu {
+  display: none;
+  position: fixed;
+  top: 2vh;
+  right: 5vw;
+  z-index: 1001;
+  cursor: pointer;
+}
+
+#hamburger-menu i {
+  font-size: 2.5rem;
+  color: white;
+}
+
+/* ========== Mobile Navigation Drawer ========== */
+#mobile-nav {
+  display: none;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 60vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.95);
+  padding: 4vh 2vw;
+  z-index: 1000;
+  animation: slideIn 0.3s ease forwards;
+}
+
+#mobile-nav i#close-menu {
+  font-size: 2rem;
+  color: white;
+  align-self: flex-end;
+  cursor: pointer;
+}
+
+#mobile-nav ul {
+  list-style: none;
+  margin-top: 5vh;
+}
+
+#mobile-nav ul li {
+  margin: 3vh 0;
+}
+
+#mobile-nav ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+}
+
+#mobile-nav ul li a:hover {
+  color: #ff9900;
+}
+
+/* Slide-in animation */
+@keyframes slideIn {
+  from {
+    right: -100%;
+  }
+  to {
+    right: 0;
+  }
+}
+
+/* Show hamburger only on small screens */
+@media (max-width: 768px) {
+  #hamburger-menu {
+    display: block;
+  }
+
+#nav h4 {
+  display: none; 
+  }
+
+}
+
+@media (max-width: 480px) {
+  #hamburger-menu {
+    top: 1vh;
+    right: 2vw;
+  }
+  #hamburger-menu i {
+    font-size: 2rem;
+  }
+  #nav h4 {
+    display: none; 
+  }
+
+  #nav img {
+    height: 5vh;
+  
+  }
+  .nav {
+    height: 10px;
+  }
+}
+
+#footer {
+  background-color: #0d0d0d;
+  padding: 5vh 10vw;
+  display: flex;
+  flex-direction: column;
+  gap: 4vh;
+  position: relative;
+}
+
+.footer-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5vh;
+}
+
+.footer-logo {
+  width: 160px;
+  object-fit: contain;
+}
+
+.footer-decor {
+  width: 100%;
+  max-width: 300px;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 3vw;
+  margin-top: 2vh;
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 200px;
+}
+
+.footer-column h3 {
+  font-size: 1.3vw;
+  margin-bottom: 1vh;
+  color: #ff9900;
+}
+
+.footer-column a {
+  display: block;
+  color: #ccc;
+  font-size: 1vw;
+  margin-bottom: 0.8vh;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-column a:hover {
+  color: #ff9900;
+}
+
+.footer-column p {
+  font-size: 1vw;
+  color: #ccc;
+  line-height: 1.5;
+}
+
+.footer-bottom {
+  text-align: center;
+  font-size: 0.9vw;
+  color: #aaa;
+  border-top: 1px solid #333;
+  padding-top: 2vh;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .footer-column h3 {
+    font-size: 4vw;
+  }
+
+  .footer-column a,
+  .footer-column p {
+    font-size: 3vw;
+  }
+
+  .footer-bottom {
+    font-size: 2.5vw;
+  }
+}
+
+        .main-content-area { /* Using a generic container like reservation-main-container */
+            padding-top: 12vh;
+            width: 100%;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 5vh;
+            box-sizing: border-box;
+        }
+
+        .status-container { /* Similar styling to thankyou-container */
+            background-color: #1e1e1e;
+            padding: 5vh 6vw;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            color: #f0f0f0; /* Ensure text color */
+        }
+
+        .status-container h1 {
+            color: #e57373; /* A red/pink color for failure */
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 0.8em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .status-container p {
+            font-size: 1.05em;
+            color: #ccc;
+            margin-bottom: 1.5em;
+            line-height: 1.6;
+        }
+         .status-container p:last-of-type {
+             margin-bottom: 0;
+             margin-top: 2em;
+         }
+
+        .status-container a {
+             color: #ff9900; /* Keep the accent color for links */
+             text-decoration: none;
+             font-weight: 600;
+             transition: color 0.3s ease;
+         }
+         .status-container a:hover {
+             color: #ffffff;
+             text-decoration: underline;
+         }
+
+         /* Responsive adjustments */
+         @media (max-width: 768px) {
+             .status-container {
+                 width: 90%;
+                 padding: 4vh 5vw;
+             }
+         }
+          @media (max-width: 480px) {
+              .status-container h1 {
+                  font-size: clamp(1.8rem, 7vw, 2.5rem);
+              }
+              .status-container p {
+                  font-size: 1em;
+              }
+          }
+    </style>
+</head>
+<body>
+
+    <div id="nav">
+        <img src="logo.png" alt="Coco Chutney Logo" />
+        <h4>Our Story</h4>
+        <h4><a href="menu.html" class="active">Menu</a></h4>
+        <h4>About Us</h4>
+        <h4>Reservations</h4>
+        <h4>Contact</h4>
+    </div>
+    <!-- Hamburger Menu for Mobile -->
+<div id="hamburger-menu">
+  <i class="ri-menu-3-line" id="open-menu"></i>
+</div>
+
+<!-- Mobile Navigation Drawer -->
+<div id="mobile-nav">
+  <i class="ri-close-line" id="close-menu"></i>
+  <ul>
+    <li><a href="#">Our Story</a></li>
+    <li><a href="menu.html" class="active-link">Menu</a></li>
+    <li><a href="#">About Us</a></li>
+    <li><a href="#">Reservations</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+</div>
+
+
+    <footer id="footer">  
+  <div class="footer-links">
+    <div class="footer-column">
+      <h3>Menu</h3>
+      <a href="#">Appetizers</a>
+      <a href="#">Main Courses</a>
+      <a href="#">Desserts</a>
+      <a href="#">Beverages</a>
+    </div>
+    
+    <div class="footer-column">
+      <h3>Explore</h3>
+      <a href="#">Reservations</a>
+      <a href="#">Contact Us</a>
+      <a href="#">About Us</a>
+    </div>
+    
+    <div class="footer-column">
+      <h3>Visit Us</h3>
+      <p>
+        Satya The Hive,<br />
+        Dwarka ExpressWay, Sector 102,<br />
+        Gurgaon, Haryana<br />
+        <a href="mailto:info@cocochutney.com">info@cocochutney.com</a>
+      </p>
+    </div>
+  </div>
+  
+  <div class="footer-bottom">
+    <p>&copy; 2025 Coco Chutney. All rights reserved.</p>
+  </div>
+</footer>
+    <div class="main-content-area">
+
+        <div class="status-container">
+            <h1>Payment Failed</h1>
+            <p>There was an issue processing your payment.</p>
+            <p>Your booking has not been confirmed.</p>
+            <p>Please try again or contact us for assistance.</p>
+            <p>
+                <a href="RESERVATION.HTML">Try Booking Again</a>
+                 <span style="color:#ccc;"> | </span>
+                <a href="/cocochutney/">Go to Homepage</a> </p>
+        </div>
+
+    </div>
+
+   
+
+    </body>
+</html>

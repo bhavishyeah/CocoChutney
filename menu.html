@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu - CocoChutney</title>
+    <link rel="shortcut icon" href="https://cocochutney.com/favicon.png" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="menu.css">
+</head>
+<body>
+
+    <div id="nav">
+        <img src="logo.png" alt="Coco Chutney Logo" />
+        <div class="nav-links">
+            <h4><a href="index.html">Home</a></h4>
+            <h4><a href="menu.html" class="active">Menu</a></h4>
+            <h4><a href="aboutus.html">About Us</a></h4>
+            <h4><a href="reservation.html">Reservations</a></h4>
+            <h4><a href="contact.html">Contact</a></h4>
+        </div>
+        <div id="hamburger-menu">
+            <i class="ri-menu-3-line" id="open-menu"></i>
+        </div>
+    </div>
+
+    <div id="mobile-nav">
+        <i class="ri-close-line" id="close-menu"></i>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html" class="active-link">Menu</a></li>
+            <li><a href="aboutus.html">About Us</a></li>
+            <li><a href="reservation.html">Reservations</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
+
+    <div id="cursor"></div>
+    <div id="cursor-blur"></div>
+
+    <video autoplay loop muted src="d2e91d65-90a0-4766-8059-2914891b6742.mp4"></video>
+
+    <div id="main">
+        <div id="scroller">
+            <div id="scroller-in">
+                 <h4>DOSA    .</h4>
+                 <h4>UTTAPAM    .</h4>
+                 <h4>PADDU    .</h4>
+                 <h4>IDLI    .</h4>
+                 <h4>DESSERTS    .</h4>
+                 <h4>BEVERAGES    .</h4>
+                 
+            </div>
+        </div>
+
+        <div class="menu-main-container">
+             <h1 class="menu-title">Menu</h1>
+             <div class="menu-container">
+                 <section class="menu-section">
+                     <h2>Dosa</h2>
+                     <div class="menu-items">
+                         <div class="menu-item" data-name="Masala Dosa" data-price="150">
+                             <img src="masala dosa.png" alt="Masala Dosa" />
+                             <div class="item-details">
+                                 <p class="item-name">Masala Dosa</p>
+                                 </div>
+                             <div class="item-actions">
+                                 <span class="price">₹ 150</span>
+                                 <div class="quantity-control">
+                                     <button class="remove-btn">-</button>
+                                     <span class="quantity">0</span>
+                                     <button class="add-btn">+</button>
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="menu-item" data-name="Mysore Masala Dosa" data-price="150">
+                             <img src="mysoree dosaa.png" alt="Mysore Masala Dosa" />
+                             <div class="item-details">
+                                 <p class="item-name">Mysore Masala Dosa</p>
+                             </div>
+                             <div class="item-actions">
+                                 <span class="price">₹ 150</span>
+                                  <div class="quantity-control">
+                                     <button class="remove-btn">-</button>
+                                     <span class="quantity">0</span>
+                                     <button class="add-btn">+</button>
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="menu-item" data-name="Rava Masala Dosa" data-price="150">
+                             <img src="rava masala dosa.png" alt="Rava Masala Dosa" />
+                             <div class="item-details">
+                                 <p class="item-name">Rava Masala Dosa</p>
+                             </div>
+                             <div class="item-actions">
+                                 <span class="price">₹ 150</span>
+                                  <div class="quantity-control">
+                                     <button class="remove-btn">-</button>
+                                     <span class="quantity">0</span>
+                                     <button class="add-btn">+</button>
+                                 </div>
+                             </div>
+                         </div>
+                     </section>
+                     <section class="menu-section">
+                         <h2>Uttapam</h2>
+                         <div class="menu-items">
+                             <div class="menu-item" data-name="Mix Veg Uttapam" data-price="150">
+                                 <img src="mix veg uttapam.png" alt="Mix Veg Uttapam" />
+                                 <div class="item-details">
+                                     <p class="item-name">Mix Veg Uttapam</p>
+                                 </div>
+                                 <div class="item-actions">
+                                     <span class="price">₹ 150</span>
+                                      <div class="quantity-control">
+                                         <button class="remove-btn">-</button>
+                                         <span class="quantity">0</span>
+                                         <button class="add-btn">+</button>
+                                     </div>
+                                 </div>
+                             </div>
+                             <div class="menu-item" data-name="Onion Uttapam" data-price="150">
+                                 <img src="Onion Uttapam.png" alt="Onion Uttapam" />
+                                 <div class="item-details">
+                                     <p class="item-name">Onion Uttapam</p>
+                                 </div>
+                                 <div class="item-actions">
+                                     <span class="price">₹ 150</span>
+                                      <div class="quantity-control">
+                                         <button class="remove-btn">-</button>
+                                         <span class="quantity">0</span>
+                                         <button class="add-btn">+</button>
+                                     </div>
+                                 </div>
+                             </div>
+                             <div class="menu-item" data-name="Tomato Onion Uttapam" data-price="150">
+                                 <img src="tomato uttapam.png" alt="Tomato Onion Uttapam" />
+                                 <div class="item-details">
+                                     <p class="item-name">Tomato Onion Uttapam</p>
+                                 </div>
+                                 <div class="item-actions">
+                                     <span class="price">₹ 150</span>
+                                      <div class="quantity-control">
+                                         <button class="remove-btn">-</button>
+                                         <span class="quantity">0</span>
+                                         <button class="add-btn">+</button>
+                                     </div>
+                                 </div>
+                             </div>
+                         </section>
+                         <section class="menu-section">
+                             <h2>Paddu</h2>
+                             <div class="menu-items">
+                                 <div class="menu-item" data-name="Paddu" data-price="150">
+                                     <img src="paddu.png" alt="Paddu" />
+                                     <div class="item-details">
+                                         <p class="item-name">Paddu</p>
+                                     </div>
+                                     <div class="item-actions">
+                                         <span class="price">₹ 150</span>
+                                          <div class="quantity-control">
+                                             <button class="remove-btn">-</button>
+                                             <span class="quantity">0</span>
+                                             <button class="add-btn">+</button>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </section>
+                             <section class="menu-section">
+                                 <h2>Idli</h2>
+                                 <div class="menu-items">
+                                     <div class="menu-item" data-name="Rava Idli" data-price="150">
+                                         <img src="rava idli.png" alt="Rava Idli" />
+                                         <div class="item-details">
+                                             <p class="item-name">Rava Idli</p>
+                                         </div>
+                                         <div class="item-actions">
+                                             <span class="price">₹ 150</span>
+                                              <div class="quantity-control">
+                                                 <button class="remove-btn">-</button>
+                                                 <span class="quantity">0</span>
+                                                 <button class="add-btn">+</button>
+                                             </div>
+                                         </div>
+                                     </div>
+                                     <div class="menu-item" data-name="Rice Idli" data-price="150">
+                                         <img src="rice idli.png" alt="Rice Idli" />
+                                         <div class="item-details">
+                                             <p class="item-name">Rice Idli</p>
+                                         </div>
+                                         <div class="item-actions">
+                                             <span class="price">₹ 150</span>
+                                              <div class="quantity-control">
+                                                 <button class="remove-btn">-</button>
+                                                 <span class="quantity">0</span>
+                                                 <button class="add-btn">+</button>
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </section>
+                                 <section class="menu-section">
+                                     <h2>Vadai</h2>
+                                     <div class="menu-items">
+                                         <div class="menu-item" data-name="Sambar Vadai" data-price="150">
+                                             <img src="samvar vadai.png" alt="Sambar Vadai" />
+                                             <div class="item-details">
+                                                 <p class="item-name">Sambar Vadai</p>
+                                             </div>
+                                             <div class="item-actions">
+                                                 <span class="price">₹ 150</span>
+                                                  <div class="quantity-control">
+                                                     <button class="remove-btn">-</button>
+                                                     <span class="quantity">0</span>
+                                                     <button class="add-btn">+</button>
+                                                 </div>
+                                             </div>
+                                         </div>
+                                         <div class="menu-item" data-name="Rasam Vadai" data-price="150">
+                                             <img src="rasam vadai.png" alt="Rasam Vadai" />
+                                             <div class="item-details">
+                                                 <p class="item-name">Rasam Vadai</p>
+                                             </div>
+                                             <div class="item-actions">
+                                                 <span class="price">₹ 150</span>
+                                                  <div class="quantity-control">
+                                                     <button class="remove-btn">-</button>
+                                                     <span class="quantity">0</span>
+                                                     <button class="add-btn">+</button>
+                                                 </div>
+                                             </div>
+                                         </div>
+                                     </section>
+                                     <section class="menu-section">
+                                         <h2>Desserts</h2>
+                                         <div class="menu-items">
+                                             <div class="menu-item" data-name="Rava Kesari" data-price="150">
+                                                 <img src="rava kesari.png" alt="Rava Kesari" />
+                                                 <div class="item-details">
+                                                     <p class="item-name">Rava Kesari</p>
+                                                 </div>
+                                                 <div class="item-actions">
+                                                     <span class="price">₹ 150</span>
+                                                      <div class="quantity-control">
+                                                         <button class="remove-btn">-</button>
+                                                         <span class="quantity">0</span>
+                                                         <button class="add-btn">+</button>
+                                                     </div>
+                                                 </div>
+                                             </div>
+                                             <div class="menu-item" data-name="Mysore Pak" data-price="150">
+                                                 <img src="myssore pak.png" alt="Mysore Pak" />
+                                                 <div class="item-details">
+                                                     <p class="item-name">Mysore Pak</p>
+                                                 </div>
+                                                 <div class="item-actions">
+                                                     <span class="price">₹ 150</span>
+                                                      <div class="quantity-control">
+                                                         <button class="remove-btn">-</button>
+                                                         <span class="quantity">0</span>
+                                                         <button class="add-btn">+</button>
+                                                     </div>
+                                                 </div>
+                                             </div>
+                                         </section>
+                                         <section class="menu-section">
+                                             <h2>Drinks</h2>
+                                             <div class="menu-items">
+                                                 <div class="menu-item" data-name="Filter Coffee" data-price="150">
+                                                     <img src="coffee.png" alt="Filter Coffee" />
+                                                     <div class="item-details">
+                                                         <p class="item-name">Filter Coffee</p>
+                                                     </div>
+                                                     <div class="item-actions">
+                                                         <span class="price">₹ 150</span>
+                                                          <div class="quantity-control">
+                                                             <button class="remove-btn">-</button>
+                                                             <span class="quantity">0</span>
+                                                             <button class="add-btn">+</button>
+                                                         </div>
+                                                     </div>
+                                                 </div>
+                                                 <div class="menu-item" data-name="Butter Milk" data-price="150">
+                                                     <img src="lassi.png" alt="Butter Milk" />
+                                                     <div class="item-details">
+                                                         <p class="item-name">Butter Milk</p>
+                                                     </div>
+                                                     <div class="item-actions">
+                                                         <span class="price">₹ 150</span>
+                                                          <div class="quantity-control">
+                                                             <button class="remove-btn">-</button>
+                                                             <span class="quantity">0</span>
+                                                             <button class="add-btn">+</button>
+                                                         </div>
+                                                     </div>
+                                                 </div>
+                                             </div>
+                                         </section>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </section>
+             </div>
+         </div>
+     </div>
+
+
+    <footer id="footer">
+        <div class="footer-links">
+            <div class="footer-column"> <h3>Menu</h3> <a href="#">Appetizers</a> <a href="#">Main Courses</a> <a href="#">Desserts</a> <a href="#">Beverages</a> </div>
+            <div class="footer-column"> <h3>Explore</h3> <a href="RESERVATION.HTML">Reservations</a> <a href="contact.html">Contact Us</a> <a href="about.html">About Us</a> </div>
+            <div class="footer-column"> <h3>Visit Us</h3> <p> Satya The Hive,<br /> Dwarka ExpressWay, Sector 102,<br /> Gurgaon, Haryana<br /> <a href="mailto:info@cocochutney.com">info@cocochutney.com</a> </p> </div>
+        </div>
+        <div class="footer-bottom"> <p>© 2025 Coco Chutney. All rights reserved.</p> </div>
+    </footer>
+
+    <button id="cart-button">Cart</button>
+
+    <script src="menu.js"></script>
+</body>
+</html>

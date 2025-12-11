@@ -1,0 +1,160 @@
+/* Import Montserrat font with different weights */
+/* Using the same font link as Reservation.html for consistency */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+    /* Inherit styles from Reservation.html body */
+    font-family: 'Montserrat', sans-serif;
+    background-color: #121212; /* Dark background from Reservation.html */
+    color: #f0f0f0; /* Light text color from Reservation.html */
+    /* Keep centering from original logsign.css */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px; /* Add some padding to body for small screens */
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+.form-container {
+    /* Style inspired by Reservation.html .reservation-section */
+    background-color: #1e1e1e; /* Slightly lighter dark background */
+    padding: 5vh 6vw; /* Responsive padding from Reservation.html */
+    border-radius: 15px; /* Larger border radius from Reservation.html */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5); /* Stronger shadow */
+    width: 90%; /* Start wider and control max width */
+    max-width: 500px; /* Set a max width for the form container */
+    text-align: center;
+    display: flex; /* Use flex for internal form layout */
+    flex-direction: column; /* Stack form elements */
+    gap: 20px; /* Add gap between form elements/groups */
+}
+
+h2 {
+    /* Style inspired by Reservation.html .reservation-section h2 */
+    color: #ff9900; /* Orange accent color from Reservation.html */
+    margin-bottom: 0.8em; /* Adjusted margin */
+    font-size: clamp(2rem, 5vw, 2.5rem); /* Responsive font size */
+    font-weight: 700; /* Bold font weight */
+    text-transform: uppercase; /* Uppercase text */
+    letter-spacing: 1px; /* Add letter spacing */
+}
+
+/* Style for the form itself - flex container properties moved to .form-container */
+form {
+    display: flex; /* Keep flex display */
+    flex-direction: column; /* Keep column direction */
+    /* Gap handled by .form-container */
+    width: 100%; /* Ensure form takes full width of its container */
+}
+
+/* Style for input fields (text, email, password) */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    /* Style inspired by Reservation.html form inputs */
+    background-color: #333; /* Darker input background */
+    border: 1px solid #555; /* Slightly lighter dark border */
+    color: #f0f0f0; /* Light text color */
+    padding: 12px 15px; /* Padding from Reservation.html */
+    margin-bottom: 15px; /* Adjusted margin between inputs */
+    border-radius: 8px; /* Larger border radius */
+    font-size: 1em; /* Relative font size */
+    font-family: 'Montserrat', sans-serif; /* Ensure correct font */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+    width: 100%; /* Make inputs take full width */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+input:focus {
+    /* Style inspired by Reservation.html input:focus */
+    outline: none;
+    border-color: #ff9900; /* Orange border on focus */
+    box-shadow: 0 0 0 3px rgba(255, 153, 0, 0.3); /* Orange glow */
+}
+
+input::placeholder {
+    color: #aaa; /* Placeholder color */
+    opacity: 0.7; /* Make placeholder slightly transparent */
+}
+
+/* Style for the submit button */
+button[type="submit"] {
+    /* Style inspired by Reservation.html .submit-btn */
+    background: linear-gradient(135deg, #ffcc00, #ff9800); /* Orange gradient background */
+    color: #121212; /* Dark text on button */
+    border: none;
+    padding: 15px 20px; /* Padding from Reservation.html */
+    border-radius: 8px; /* Border radius */
+    font-size: 1.1em; /* Font size */
+    font-weight: 600; /* Font weight */
+    font-family: 'Montserrat', sans-serif; /* Ensure correct font */
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.1s ease; /* Smooth transitions */
+    margin-top: 1em; /* Margin above the button */
+    text-transform: uppercase; /* Uppercase text */
+    width: 100%; /* Make button take full width */
+    box-sizing: border-box; /* Include padding in width */
+}
+
+button[type="submit"]:hover {
+    /* Style inspired by Reservation.html .submit-btn:hover */
+    background: linear-gradient(135deg, #ffb300, #ff6f00); /* Darker orange gradient on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+button[type="submit"]:active {
+    /* Style inspired by Reservation.html .submit-btn:active */
+    transform: translateY(0px); /* Press down effect */
+}
+
+
+/* Style for paragraph text (like "Already have an account?") */
+p {
+    /* Style inspired by Reservation.html booking policy text color */
+    margin-top: 1.5em; /* Adjusted margin */
+    font-size: 0.95em; /* Adjusted font size */
+    color: #ccc; /* Light grey text color */
+    line-height: 1.6; /* Added line height for readability */
+}
+
+/* Style for links (like "Login here") */
+a {
+    /* Style inspired by Reservation.html booking policy links */
+    color: #ff9900; /* Orange accent color for links */
+    text-decoration: none; /* No underline by default */
+    font-weight: 600; /* Bold font weight */
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+a:hover {
+    /* Style inspired by Reservation.html booking policy links:hover */
+    color: #ffffff; /* White color on hover */
+    text-decoration: underline; /* Underline on hover */
+}
+
+/* --- Responsiveness --- */
+@media (max-width: 480px) {
+     .form-container {
+         padding: 4vh 4vw; /* Adjust padding for very small screens */
+     }
+     h2 {
+         font-size: clamp(1.8rem, 7vw, 2rem); /* Adjust heading size */
+     }
+     input[type="text"],
+     input[type="email"],
+     input[type="password"] {
+         padding: 10px 12px; /* Adjust input padding */
+         font-size: 0.95em; /* Adjust input font size */
+     }
+     button[type="submit"] {
+         padding: 12px 15px; /* Adjust button padding */
+         font-size: 1em; /* Adjust button font size */
+     }
+     p {
+         font-size: 0.9em; /* Adjust paragraph font size */
+     }
+     .form-container {
+        gap: 15px; /* Adjust gap */
+     }
+}

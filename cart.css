@@ -1,0 +1,884 @@
+/* Import Montserrat font */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* ========== Global Styles & Reset (Premium Refinement) ========== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif; /* Ensure font is applied globally */
+    color: #f0f0f0; /* Consistent light text color, subtle off-white */
+    /* NEW: Disable default tap highlight */
+    -webkit-tap-highlight-color: transparent;
+    /* NEW: For other browsers, though less common for blue flash */
+    outline: none; /* Already there, good */
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px; /* Base font size for rem calculations */
+}
+
+body {
+    background-color: #0c0c0c; /* Even darker, almost black background */
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.7; /* Slightly increased line height for readability */
+}
+
+/* Custom selection color */
+*::selection {
+    background-color: #fff;
+    color: #ff9900;
+}
+
+
+
+/* ========== Custom Cursor Styles (Premium Refinement) ========== */
+#cursor {
+    height: 25px; /* Slightly larger cursor */
+    width: 25px;
+    background-color: #ff9900; /* Vibrant orange accent */
+    border-radius: 50%;
+    position: fixed;
+    z-index: 99;
+    transition: all 0.08s ease-out; /* Faster, smoother transition */
+    pointer-events: none;
+    mix-blend-mode: difference; /* A cool blending effect for the cursor */
+    display: none; /* Hidden by default, shown by JS */
+}
+
+#cursor-blur {
+    height: 400px; /* Larger blur area */
+    width: 400px;
+    background-color: rgba(255, 153, 0, 0.08); /* More subtle semi-transparent orange */
+    border-radius: 50%;
+    position: fixed;
+    filter: blur(100px); /* More intense blur */
+    z-index: 9;
+    transition: all 0.3s ease-out; /* Smoother transition */
+    pointer-events: none;
+    display: none; /* Hidden by default, shown by JS */
+}
+body::-webkit-scrollbar {
+    width: 6px; /* Slightly wider for better visibility */
+    background: linear-gradient(180deg, #0c0c0c, #1a1a1a); /* Gradient background */
+}
+
+body::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #ff9900, #ffcc00); /* Gradient thumb */
+    border-radius: 50px;
+    box-shadow: 0 0 10px rgba(255, 153, 0, 0.5); /* Subtle glow */
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #ffb300, #ffd700); /* Brighter on hover */
+    box-shadow: 0 0 15px rgba(255, 153, 0, 0.8); /* Stronger glow */
+}
+/* Video Background (Subtle Overlay) */
+video {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0.5; /* Slightly less opaque to let the dark background show more */
+    filter: brightness(0.8) grayscale(0.2); /* Slightly darker and desaturated */
+}
+
+/* ========== Navigation Styles (Sleek & Premium) ========== */
+#nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 80px; /* Taller nav bar for a bolder presence */
+    width: 100%;
+    padding: 0 40px; /* Increased padding */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 999;
+    background-color: rgba(10, 10, 10, 0.98); /* Almost solid dark background */
+    backdrop-filter: blur(15px); /* Stronger blur effect */
+    border-bottom: 1px solid rgba(255, 153, 0, 0.1); /* Very subtle accent border */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4); /* Deeper shadow */
+    box-sizing: border-box;
+    transition: all 0.4s ease;
+}
+
+#nav.scrolled {
+    background-color: rgba(0, 0, 0, 0.98); /* Solid black when scrolled */
+    border-bottom: 1px solid #ff9900; /* More prominent border when scrolled */
+    box-shadow: 0 6px 35px rgba(0, 0, 0, 0.6); /* Even deeper shadow */
+}
+
+#nav img {
+    height: 50px; /* Slightly larger logo */
+    object-fit: contain;
+    filter: drop-shadow(0 0 5px rgba(255, 153, 0, 0.3)); /* Subtle glow for the logo */
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+#nav img:hover {
+    transform: scale(1.08); /* More pronounced scale */
+    filter: drop-shadow(0 0 10px rgba(255, 153, 0, 0.6)); /* Brighter glow */
+}
+
+#nav .nav-links {
+    display: none;
+    gap: 3rem; /* Wider gap for desktop links */
+}
+#nav .nav-links h4 {
+    text-transform: uppercase;
+    font-weight: 500;
+    cursor: pointer;
+    font-size: 1.05rem; /* Slightly larger font */
+    color: #e0e0e0; /* Softer white for text */
+    letter-spacing: 0.05em; /* Added letter spacing */
+    transition: all 0.3s ease;
+    position: relative;
+}
+#nav .nav-links h4::after {
+    content: '';
+    position: absolute;
+    bottom: -8px; /* Lower underline */
+    left: 0;
+    width: 0;
+    height: 3px; /* Thicker underline */
+    background: linear-gradient(90deg, #ff9900, #ffcc00); /* Gradient underline */
+    transition: width 0.3s ease, transform 0.3s ease;
+}
+#nav .nav-links h4:hover::after {
+    width: 100%;
+    transform: scaleX(1.05); /* Slight stretch for hover */
+}
+#nav .nav-links h4 a {
+    color: inherit;
+    text-decoration: none;
+}
+#nav .nav-links h4:hover, #nav .nav-links h4 a:hover {
+    color: #ff9900; /* Vibrant orange on hover */
+    text-shadow: 0 0 8px rgba(255, 153, 0, 0.6); /* Subtle text glow */
+}
+#nav .nav-links h4 a.active {
+    color: #ff9900;
+    font-weight: 700;
+    text-shadow: 0 0 5px rgba(255, 153, 0, 0.8);
+}
+
+
+   
+
+
+/* ========== Scroller Styles (Enhanced Visuals) ========== */
+#scroller {
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin-bottom: 7vh; /* More space below */
+    padding: 3vh 0; /* More vertical padding */
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 100px; /* Space below taller fixed nav */
+    background: linear-gradient(90deg, transparent, rgba(255, 153, 0, 0.03), transparent); /* Even more subtle gradient */
+    border-top: 1px solid rgba(255, 255, 255, 0.05); /* Subtle border */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Subtle border */
+}
+#scroller::-webkit-scrollbar { display: none; }
+#scroller-in {
+    display: inline-block;
+    animation: scroll 90s linear infinite; /* Slower animation for a grander feel */
+}
+#scroller h4 {
+    display: inline-block;
+    font-size: clamp(8vw, 15vw, 15rem); /* Larger font size */
+    font-weight: 900;
+    margin-right: 3vw; /* More spacing */
+    color: rgba(255, 255, 255, 0.1); /* Very subtle, almost transparent text */
+    -webkit-text-stroke: 1.5px rgba(255, 153, 0, 0.2); /* Subtle stroke for effect */
+    transition: all 0.3s ease-out;
+    cursor: default;
+    text-shadow: 0 0 15px rgba(0, 0, 0, 0.8); /* Deeper shadow */
+}
+#scroller h4:hover {
+    color: rgba(255, 255, 255, 0.8); /* Brighter white on hover */
+    -webkit-text-stroke: 1.5px #ff9900; /* Vibrant stroke on hover */
+    text-shadow: 0 0 25px rgba(255, 153, 0, 0.8); /* Stronger glow */
+}
+/* Scroller animation keyframes */
+@keyframes scroll {
+    to {
+        transform: translateX(-100%);
+    }
+}
+@media (max-width: 768px) {#scroller {
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding:  0 20px; /* More vertical padding (from cart.css) */
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: -5px;
+    margin-bottom: -100px; /* Space below taller fixed nav (from cart.css) */
+    background: linear-gradient(90deg, transparent, rgba(255, 153, 0, 0.03), transparent); /* Even more subtle gradient (from cart.css) */
+    border-top: 1px solid rgba(255, 255, 255, 0.05); /* Subtle border (from cart.css) */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);}
+
+    #scroller h4 {
+    display: inline-block;
+    font-size: clamp(8vw, 15vw, 15rem); /* Larger font size (from cart.css) */
+    font-weight: 900;
+    margin-right: 3vw; /* More spacing (from cart.css) */
+    cursor: default; /* Changed to default as it's a decorative element here */
+    color: rgba(255, 255, 255, 0.8); /* Brighter white on hover (from cart.css) */
+    -webkit-text-stroke: .8px #ff9900; /* Vibrant stroke on hover (from cart.css) */
+    text-shadow: 0 0 25px rgba(255, 153, 0, 1); /* Stronger glow (from cart.css) */}
+}
+
+/* Main content wrapper */
+.page-content {
+    padding-top: 7vh; /* Adjusted padding top to accommodate taller nav */
+    flex-grow: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 7vh; /* More space before footer */
+    box-sizing: border-box;
+    z-index: 10;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.6); /* Stronger background overlay */
+    min-height: calc(100vh - 80px); /* Adjusted minimum height */
+    overflow-x: hidden;
+}
+
+
+h2 {
+    font-weight: 800; /* Bolder heading */
+    margin: 0;
+    padding: 1.2em; /* More padding */
+    text-align: center;
+    padding-top: 5vh; /* Adjusted padding top */
+    padding-bottom: 1vh; /* Adjusted padding bottom */
+    font-size: clamp(3em, 7vw, 4em); /* Larger and more responsive */
+    color: #ff9900;
+    text-shadow: 0 0 15px rgba(255, 153, 0, 0.6), 0 0 25px rgba(0, 0, 0, 0.8); /* Stronger, glowing text shadow */
+    text-transform: uppercase;
+    letter-spacing: 0.08em; /* Added letter spacing */
+    animation: fadeInUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) ease-out; /* Smoother animation curve */
+}
+
+/* Animations from INDEX.css */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(60px); /* Larger initial translation */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#cart-items {
+    width: 85%; /* Slightly narrower for a more contained feel */
+    max-width: 1000px; /* Increased max width */
+    margin: 2vh auto 4em; /* More vertical margin */
+    display: flex;
+    flex-direction: column;
+    gap: 2em; /* Increased gap between items */
+    background-color: rgba(20, 20, 20, 0.95); /* Darker, more solid background */
+    padding: 3em; /* More padding */
+    border-radius: 20px; /* More rounded corners */
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.7); /* Deeper, more prominent shadow */
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 153, 0, 0.1); /* Consistent border */
+    backdrop-filter: blur(10px); /* Stronger blur */
+}
+
+.empty-cart-message {
+    text-align: center;
+    font-size: 1.3em; /* Slightly larger */
+    color: #a0a0a0; /* Softer grey */
+    padding: 3em;
+    font-weight: 300; /* Lighter font weight */
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    background-color: #1a1a1a; /* Even darker background */
+    padding: 2em; /* More padding */
+    border-radius: 12px;
+    gap: 2em; /* Increased gap */
+    width: 100%;
+    margin: 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); /* Subtle shadow */
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.05); /* Very subtle internal border */
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, background-color 0.3s ease; /* Smoother transitions */
+    position: relative; /* Needed for the shine effect */
+    overflow: hidden; /* Ensures the shine doesn't go outside */
+    /* Removed cursor: pointer; and touch-action: manipulation; from here */
+    /* These should be on interactive elements like buttons, not the whole item wrapper */
+    outline: none;
+}
+.cart-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.4) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: skewX(-20deg);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.cart-item {
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+}
+
+
+.cart-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        rgba(239, 239, 239, 0.63) 0%,
+        rgba(255, 255, 255, 0.76) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: skewX(-20deg);
+    animation: shineMove 0.5s ease-in-out;
+    animation-play-state: paused;
+}
+.cart-item.shine-now::before {
+    animation-play-state: running;
+}
+
+
+
+/* Keyframes for shine motion */
+@keyframes shineMove {
+    0% {
+        left: -75%;
+    }
+    100% {
+        left: 125%;
+    }
+}
+@keyframes textShine {
+    0% {
+        background-position: -200%;
+    }
+    100% {
+        background-position: 200%;
+    }
+}
+
+.item-name, .empty-cart-message {
+    background: linear-gradient(90deg, #fff, #ffcc00, #fff);
+    background-size: 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textShine 7s linear infinite;
+}
+
+
+.cart-item:hover {
+    transform: translateY(-8px); /* More pronounced lift */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6); /* Stronger shadow */
+    background-color: #2a2a2a; /* Slightly lighter background on hover */
+}
+
+.cart-item img {
+    width: 25%; /* Slightly smaller image to give content more space */
+    max-width: 180px; /* Increased max image width */
+    height: 120px; /* Fixed height for consistency */
+    border-radius: 10px; /* Slightly more rounded */
+    object-fit: cover;
+    border: 3px solid #ffcc00; /* Thicker, vibrant orange border */
+    flex-shrink: 0;
+    box-shadow: 0 0 15px rgba(255, 153, 0, 0.4); /* Glow for the image */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.cart-item img:hover {
+    transform: scale(1.08); /* More pronounced zoom */
+    box-shadow: 0 0 25px rgba(255, 153, 0, 0.8); /* Brighter glow */
+}
+
+.item-details {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Increased gap */
+}
+
+.item-name {
+    font-size: 1.4em; /* Larger font size */
+    font-weight: 600;
+    color: #fff; /* Pure white for item name */
+    letter-spacing: 0.02em;
+    margin: 0;
+}
+
+/* Quantity Control Styles */
+.quantity-control {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* More space */
+}
+
+.quantity-control button {
+    background-color: #ff9900;
+    color: #121212;
+    border: none;
+    border-radius: 50%;
+    width: 35px; /* Larger buttons */
+    height: 35px;
+    font-size: 1.3em; /* Larger font */
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(255, 153, 0, 0.4); /* Subtle shadow */
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    /* NEW: Add shine effect to the quantity buttons themselves */
+    position: relative;
+    overflow: hidden;
+    -webkit-tap-highlight-color: transparent; /* Ensure buttons don't have blue flash */
+    outline: none;
+}
+
+.quantity-control button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent); /* Brighter shine for button */
+    transition: left 0.4s ease-out; /* Slightly faster shine for button */
+    pointer-events: none;
+    opacity: 0;
+}
+
+/* Desktop Hover for quantity buttons */
+@media (hover: hover) and (pointer: fine) {
+    .quantity-control button:hover::before {
+        left: 100%;
+        opacity: 1;
+    }
+}
+
+/* Active/Tap for quantity buttons */
+.quantity-control button:active::before { /* This will work for a quick flash on tap */
+    animation: buttonShine 0.3s ease-out forwards; /* Define a quicker animation for buttons */
+    opacity: 1;
+}
+
+@keyframes buttonShine {
+    0% { left: -100%; opacity: 1; }
+    100% { left: 100%; opacity: 1; }
+}
+/* Mobile tap shine trigger class for buttons */
+.quantity-control button.shine-tap::before {
+    animation: buttonShine 0.3s ease-out forwards;
+    opacity: 1;
+}
+
+
+.quantity-control button:hover {
+    background-color: #ffb300;
+    transform: scale(1.15); /* More pronounced scale */
+    box-shadow: 0 4px 12px rgba(255, 153, 0, 0.6);
+}
+
+.quantity-control button:active {
+    background-color: #ff6f00;
+    transform: scale(0.9); /* Stronger press effect */
+}
+
+.quantity {
+    font-size: 1.2em; /* Larger quantity text */
+    font-weight: 700; /* Bolder quantity text */
+    color: #fff; /* Pure white */
+    min-width: 25px; /* Ensure space for at least one digit */
+    text-align: center;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3); /* Subtle glow */
+}
+
+
+.item-price {
+    font-weight: 700; /* Bolder price */
+    color: #ffcc00; /* Slightly brighter orange for price */
+    font-size: 1.8em; /* Larger price */
+    margin: 0;
+    text-shadow: 0 0 8px rgba(255, 204, 0, 0.6); /* Glowing effect */
+}
+
+
+.remove-btn {
+    align-self: center;
+    margin-left: auto;
+    flex-shrink: 0;
+
+    background: linear-gradient(135deg, #d32f2f, #b71c1c); /* Red gradient */
+    color: white;
+    padding: 0.8em 1.6em; /* More padding */
+    border: none;
+    border-radius: 10px; /* Slightly more rounded */
+    cursor: pointer;
+    font-size: 1em; /* Adjusted font size */
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    box-shadow: 0 4px 15px rgba(211, 47, 47, 0.3);
+    transition: all 0.3s ease-out; /* Smoother transition */
+    position: relative;
+    overflow: hidden;
+    -webkit-tap-highlight-color: transparent; /* Ensure no blue flash */
+    outline: none;
+}
+
+.remove-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s;
+    opacity: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .remove-btn:hover::before {
+        left: 100%;
+        opacity: 1;
+    }
+}
+
+.remove-btn:active::before {
+    animation: buttonShine 0.3s ease-out forwards;
+    opacity: 1;
+}
+
+.remove-btn:hover {
+    background: linear-gradient(135deg, #b71c1c, #9c1515); /* Darker red on hover */
+    transform: translateY(-4px); /* Stronger lift effect */
+    box-shadow: 0 8px 25px rgba(211, 47, 47, 0.5); /* Enhanced shadow */
+}
+.remove-btn:active {
+    transform: translateY(-1px); /* Stronger press effect */
+}
+
+
+.cart-footer {
+    width: 85%; /* Match #cart-items width */
+    max-width: 1000px; /* Match #cart-items max-width */
+    margin: 2em auto; /* More vertical margin */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em; /* Increased gap */
+}
+
+.total-section {
+    font-size: 1.8em; /* Larger total font size */
+    font-weight: 700; /* Bolder */
+    color: #ffcc00;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(255, 204, 0, 0.8); /* Stronger glow */
+    letter-spacing: 0.05em;
+}
+
+.cart-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5em; /* Increased gap between buttons */
+    justify-content: center;
+    width: 100%;
+}
+
+/* Consistent Button Styles (Premium Refinement) */
+.checkout-btn,
+.clear-cart,
+.back-to-menu-btn {
+    display: inline-block;
+    border: none;
+    border-radius: 50px;
+    padding: 16px 32px; /* Increased padding for larger buttons */
+    font-size: 1.05rem; /* Slightly larger font size */
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(255, 153, 0, 0.4); /* Deeper shadow */
+    transition: all 0.3s ease-out; /* Smoother transition */
+    text-decoration: none;
+    text-align: center;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+    color: #121212; /* Default button text color */
+    letter-spacing: 0.05em; /* Added letter spacing */
+    -webkit-tap-highlight-color: transparent; /* Ensure no blue flash */
+    outline: none;
+}
+
+.checkout-btn::before,
+.clear-cart::before,
+.back-to-menu-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -120%; /* Start further left for longer shine */
+    width: 80%; /* Wider shine effect */
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent); /* Brighter shine */
+    transition: left 0.6s ease-out; /* Slower, smoother shine */
+    opacity: 0; /* Ensure hidden initially */
+}
+
+/* Desktop hover for main buttons */
+@media (hover: hover) and (pointer: fine) {
+    .checkout-btn:hover::before,
+    .clear-cart:hover::before,
+    .back-to-menu-btn:hover::before {
+        left: 120%; /* End further right */
+        opacity: 1;
+    }
+}
+
+/* Active/Tap for main buttons */
+.checkout-btn:active::before,
+.clear-cart:active::before,
+.back-to-menu-btn:active::before {
+    animation: buttonShine 0.3s ease-out forwards; /* Reuse buttonShine for quicker tap feedback */
+    opacity: 1;
+}
+
+
+.checkout-btn:hover,
+.clear-cart:hover,
+.back-to-menu-btn:hover {
+    transform: translateY(-5px); /* Stronger lift */
+    box-shadow: 0 10px 30px rgba(255, 153, 0, 0.6); /* Even deeper shadow */
+}
+
+.checkout-btn:active,
+.clear-cart:active,
+.back-to-menu-btn:active {
+    transform: translateY(-2px); /* Stronger press effect */
+}
+
+.checkout-btn {
+    background: linear-gradient(135deg, #ffcc00, #ff9800);
+    color: #121212;
+}
+.checkout-btn:hover {
+    background: linear-gradient(135deg, #ffb300, #ff6f00); /* Darker orange gradient */
+}
+
+
+.clear-cart {
+    background: linear-gradient(135deg, #d32f2f, #b71c1c);
+    color: white;
+    box-shadow: 0 5px 20px rgba(211, 47, 47, 0.4);
+}
+.clear-cart:hover {
+    background: linear-gradient(135deg, #b71c1c, #9c1515);
+    box-shadow: 0 10px 30px rgba(211, 47, 47, 0.6);
+}
+
+
+/* Styles for the Back to Menu button */
+.back-to-menu-btn {
+    background: linear-gradient(135deg, #3a3a3a, #5a5a5a); /* Darker, sophisticated grey gradient */
+    color: #e0e0e0; /* Softer white text */
+    box-shadow: 0 5px 20px rgba(85, 85, 85, 0.4);
+}
+.back-to-menu-btn:hover {
+    background: linear-gradient(135deg, #5a5a5a, #7a7a7a);
+    box-shadow: 0 10px 30px rgba(85, 85, 85, 0.6);
+}
+
+/* Footer Styling (Premium Refinement) */
+#footer {
+    background-color: #101010; /* Even darker footer background */
+    padding: 5vh 10vw; /* More padding for a grander feel */
+    color: #b0b0b0; /* Softer grey text */
+    border-top: 2px solid #ff9900;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: auto;
+    box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.4); /* Shadow at the top of the footer */
+}
+
+.footer-links {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 3em; /* More gap */
+    margin-bottom: 4vh; /* More margin */
+}
+.footer-column h3 {
+    color: #ff9900;
+    font-size: 1.3em; /* Slightly larger */
+    margin-bottom: 1.2em; /* More margin */
+    font-weight: 700; /* Bolder */
+    letter-spacing: 0.05em;
+    position: relative;
+}
+.footer-column h3::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 40px; /* Subtle underline */
+    height: 2px;
+    background: #ff9900;
+}
+.footer-column a, .footer-column p {
+    color: #b0b0b0;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 0.7em; /* More margin */
+    font-size: 0.98em; /* Slightly larger */
+    line-height: 1.7; /* Increased line height */
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+.footer-column a:hover {
+    color: #ffffff;
+    transform: translateX(5px); /* Subtle slide on hover */
+}
+.footer-bottom {
+    text-align: center;
+    margin-top: 3vh; /* More margin */
+    padding-top: 3vh; /* More padding */
+    border-top: 1px solid rgba(255, 255, 255, 0.08); /* More subtle border */
+    font-size: 0.95em; /* Slightly larger */
+    color: #808080; /* Darker grey */
+    letter-spacing: 0.02em;
+}
+
+
+/* Responsive Adjustments (Refined for Premium) */
+
+/* Tablet and smaller */
+@media (max-width: 768px) {
+    h2 {
+        font-size: clamp(2.5em, 9vw, 3.5em);
+        padding-top: 15vh;
+    }
+    #cart-items {
+        width: 90%;
+        padding: 2em;
+    }
+    .cart-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 1.5em;
+        gap: 1.5em;
+    }
+    .cart-item img {
+        width: 90%;
+        max-width: 250px;
+        height: 150px; /* Adjust height */
+        margin-bottom: 1em;
+    }
+    .item-details {
+        width: 100%;
+        align-items: center;
+        gap: 10px;
+    }
+    .item-name { font-size: 1.3em; }
+    .item-price { font-size: 1.6em; }
+    .quantity-control { justify-content: center; }
+    .remove-btn {
+        margin-top: 1.5em;
+        padding: 0.7em 1.4em;
+        font-size: 0.9em;
+    }
+
+    .cart-footer {
+        width: 90%;
+    }
+    .total-section { font-size: 1.5em; }
+    .cart-actions {
+        flex-direction: column;
+        gap: 1em;
+    }
+    .checkout-btn,
+    .clear-cart,
+    .back-to-menu-btn {
+        width: 90%;
+        max-width: 280px;
+        padding: 14px 28px;
+        font-size: 0.95rem;
+        align-self: center;
+    }
+
+   #footer { padding: 5vh 10vw; margin-top: auto; }
+    .footer-links { grid-template-columns: repeat(3, 1fr); gap: 3em; }
+    .footer-column { text-align: left; }
+    .footer-column h3::after { left: 0; transform: none; }
+}
+
+/* Mobile phones */
+@media (max-width: 480px) {
+    h2 {
+        font-size: clamp(2.2em, 12vw, 3.2em);
+        padding-top: 12vh;
+    }
+    #cart-items {
+        width: 95%;
+        padding: 1.5em;
+        gap: 1.5em;
+    }
+    .cart-item {
+        padding: 1em;
+        gap: 1em;
+    }
+    .cart-item img {
+        width: 95%;
+        height: 100px;
+        margin-bottom: 0.8em;
+    }
+    .item-details {
+        gap: 8px;
+    }
+    .item-name { font-size: 1.2em; }
+    .quantity-control { font-size: 0.85em; }
+    .item-price { font-size: 1.4em; }
+    .remove-btn {
+        margin-top: 1em;
+        font-size: 0.75em; padding: 0.6em 1em;
+    }
+
+    /* Footer adjustments */
+    #footer { padding: 3vh 5vw; }
+    .footer-links { gap: 1.5em; }
+    .footer-column h3 { font-size: 1.1em; }
+    .footer-column a, .footer-column p { font-size: 0.88em; }
+    .footer-bottom { font-size: 0.8em; }
+}

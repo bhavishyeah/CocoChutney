@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thank You for Your Booking - CocoChutney</title>
+    <link rel="shortcut icon" href="https://cocochutney.com/favicon.png" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+        /* Inherit base styles from common style.css (body, font, colors etc.) */
+        /* If body styles are in style.css, you might not need this block */
+        /* Assuming body styles are in style.css based on your description */
+        body {
+            background-color: #121212; /* Ensure dark background */
+            color: #f0f0f0; /* Ensure light text color */
+            font-family: 'Montserrat', sans-serif; /* Ensure correct font */
+            margin: 0;
+            padding: 0;
+            display: flex; /* Added flex to help push footer down */
+            flex-direction: column; /* Stack content and footer */
+            min-height: 100vh; /* Minimum height for layout */
+        }
+
+        /* You should ideally move Nav and Footer styles to style.css */
+        /* For now, keeping them here for illustration based on your prev HTML */
+
+        /* ========== Navigation Styles (Copied from Reservation.html) ========== */
+        #nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 10vh;
+            width: 100%;
+            padding: 0 5vw;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 999;
+            background-color: rgba(18, 18, 18, 0.8);
+            backdrop-filter: blur(5px);
+            border-bottom: 1px solid rgba(255, 153, 0, 0.2);
+            box-sizing: border-box; /* Include padding in width */
+        }
+        #nav img { height: 4.5vw; min-height: 40px; }
+        #nav .nav-links { display: flex; gap: 3vw; }
+        #nav .nav-links h4 { text-transform: uppercase; font-weight: 500; cursor: pointer; font-size: 1.1vw; margin: 0; color: #f0f0f0; transition: color 0.3s ease; }
+        #nav .nav-links h4 a { color: inherit; text-decoration: none; }
+        #nav .nav-links h4:hover, #nav .nav-links h4 a:hover { color: #ff9900; }
+        #hamburger-menu { display: none; /* ... other hamburger styles */ }
+        #mobile-nav { display: none; /* ... other mobile nav styles */ }
+        /* ========== End Navigation Styles ========== */
+
+
+        /* Main content area - similar to reservation-main-container */
+        /* Reusing the class name is fine if styles are generic */
+        .reservation-main-container {
+            padding-top: 12vh; /* Account for fixed nav height + some space */
+            width: 100%;
+            flex-grow: 1; /* Allow it to take up available space */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* Removed justify-content: center so content aligns to top of this container */
+            padding-bottom: 5vh; /* Space before footer */
+            box-sizing: border-box; /* Include padding in width */
+        }
+
+        /* Specific styles for the thank you message container */
+        .thankyou-container {
+            background-color: #1e1e1e; /* Match reservation section background */
+            padding: 5vh 6vw; /* Match reservation section padding */
+            border-radius: 15px; /* Match reservation section border-radius */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5); /* Match reservation section box-shadow */
+            width: 80%; /* Match reservation section width */
+            max-width: 700px; /* Match reservation section max-width */
+            text-align: center;
+        }
+
+        .thankyou-container h1 {
+            color: #ff9900; /* Match orange accent */
+            font-size: clamp(2rem, 5vw, 3rem); /* Match reservation section h2 size */
+            font-weight: 700; /* Match reservation section h2 weight */
+            margin-bottom: 0.8em; /* Adjusted margin */
+            text-transform: uppercase; /* Match reservation section h2 transform */
+            letter-spacing: 1px; /* Match reservation section h2 spacing */
+        }
+
+        .thankyou-container p {
+            font-size: 1.05em; /* Match reservation intro paragraph size */
+            color: #ccc; /* Match text color */
+            margin-bottom: 1.5em;
+            line-height: 1.6; /* Added line height for readability */
+        }
+
+         .thankyou-container p:last-of-type {
+             margin-bottom: 0; /* Remove bottom margin from the last paragraph */
+             margin-top: 2em; /* Add space above links */
+         }
+
+        .thankyou-container a {
+             color: #ff9900;
+             text-decoration: none;
+             font-weight: 600; /* Match nav link weight */
+             transition: color 0.3s ease; /* Add hover transition */
+         }
+
+        .thankyou-container a:hover {
+             color: #ffffff; /* Match nav link hover color */
+             text-decoration: underline; /* Keep underline on hover */
+         }
+
+
+        /* ========== Footer Styles (Copied from Reservation.html) ========== */
+        #footer {
+            background-color: #1e1e1e;
+            padding: 4vh 8vw;
+            color: #ccc;
+            border-top: 2px solid #ff9900;
+            width: 100%;
+            box-sizing: border-box;
+            /* margin-top: auto; - Removed because body flex handles this */
+        }
+        .footer-links { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 2em; margin-bottom: 3vh; }
+        .footer-column h3 { color: #ff9900; font-size: 1.2em; margin-bottom: 1em; font-weight: 600; }
+        .footer-column a, .footer-column p { color: #ccc; text-decoration: none; display: block; margin-bottom: 0.5em; font-size: 0.95em; line-height: 1.6; }
+        .footer-column a:hover { color: #ffffff; }
+        .footer-bottom { text-align: center; margin-top: 2vh; padding-top: 2vh; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.9em; color: #aaa; }
+        /* ========== End Footer Styles ========== */
+
+
+        /* Responsiveness (Copied/Adjusted from Reservation.html) */
+         @media (max-width: 768px) {
+             .thankyou-container {
+                 width: 90%;
+                 padding: 4vh 5vw;
+             }
+              /* ... other responsive nav/footer adjustments might be needed depending on your style.css */
+         }
+          @media (max-width: 480px) {
+              .thankyou-container h1 {
+                  font-size: clamp(1.8rem, 7vw, 2.5rem);
+              }
+              .thankyou-container p {
+                  font-size: 1em;
+              }
+          }
+
+
+    </style>
+</head>
+<body>
+
+    <div id="nav">
+        <img src="logo.png" alt="Coco Chutney Logo" />
+        <div class="nav-links">
+             <h4><a href="/cocochutney/">Home</a></h4> <h4><a href="menu.html">Menu</a></h4>
+             <h4><a href="about.html">About Us</a></h4>
+             <h4><a href="RESERVATION.HTML">Reservations</a></h4> <h4><a href="#">Contact</a></h4>
+        </div>
+         <div id="hamburger-menu">
+             <i class="ri-menu-3-line" id="open-menu"></i>
+         </div>
+    </div>
+
+     <div id="mobile-nav">
+      <i class="ri-close-line" id="close-menu"></i>
+      <ul>
+        <li><a href="/cocochutney/">Home</a></li> <li><a href="menu.html">Menu</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="RESERVATION.HTML" class="active-link">Reservations</a></li> <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="reservation-main-container">
+
+        <div class="thankyou-container">
+            <h1>Thank You for Your Booking!</h1>
+            <p>Your reservation request has been received.</p>
+            <p>We will review it and get back to you shortly to confirm the details.</p>
+            <p>
+                <a href="RESERVATION.HTML">Book another table</a>
+                <span style="color:#ccc;"> | </span> <a href="/cocochutney/">Go to Homepage</a> </p>
+        </div>
+
+    </div>
+
+    <footer id="footer">
+      <div class="footer-links">
+        <div class="footer-column"> <h3>Menu</h3> <a href="#">Appetizers</a> <a href="#">Main Courses</a> <a href="#">Desserts</a> <a href="#">Beverages</a> </div>
+        <div class="footer-column"> <h3>Explore</h3> <a href="RESERVATION.HTML">Reservations</a> <a href="#">Contact Us</a> <a href="about.html">About Us</a> </div> <div class="footer-column"> <h3>Visit Us</h3> <p> Satya The Hive,<br /> Dwarka ExpressWay, Sector 102,<br /> Gurgaon, Haryana<br /> <a href="mailto:info@cocochutney.com">info@cocochutney.com</a> </p> </div>
+      </div>
+      <div class="footer-bottom"> <p>&copy; 2025 Coco Chutney. All rights reserved.</p> </div>
+    </footer>
+
+    </body>
+</html>

@@ -1,0 +1,499 @@
+ * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .checkout-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .checkout-header {
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            color: white;
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .back-btn {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 10px 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateX(-3px);
+        }
+
+        .checkout-content {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 0;
+            min-height: 600px;
+        }
+
+        .left-section {
+            padding: 40px;
+            background: #f8f9fa;
+        }
+
+        .right-section {
+            padding: 40px;
+            background: white;
+            border-left: 1px solid #e9ecef;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .address-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border: 2px solid #e9ecef;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .address-card:hover {
+            border-color: #ff6b6b;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .address-card.selected {
+            border-color: #ff6b6b;
+            background: linear-gradient(135deg, rgba(255,107,107,0.05), rgba(254,202,87,0.05));
+        }
+
+        .address-type {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .address-details {
+            color: #6c757d;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .delivery-time {
+            background: #28a745;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .deliver-here-btn {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .deliver-here-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(40,167,69,0.3);
+        }
+
+        .add-address-card {
+            border: 2px dashed #28a745;
+            background: rgba(40,167,69,0.05);
+            text-align: center;
+            color: #28a745;
+            font-weight: 600;
+        }
+
+        .add-new-btn {
+            background: transparent;
+            color: #28a745;
+            border: 2px solid #28a745;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .add-new-btn:hover {
+            background: #28a745;
+            color: white;
+        }
+
+        .payment-section {
+            margin-top: 40px;
+        }
+
+        .payment-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .payment-option {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .payment-option:hover {
+            border-color: #ff6b6b;
+            transform: translateY(-1px);
+        }
+
+        .payment-option.selected {
+            border-color: #ff6b6b;
+            background: linear-gradient(135deg, rgba(255,107,107,0.05), rgba(254,202,87,0.05));
+        }
+
+        .payment-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .cod-icon {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+        }
+
+        .card-icon {
+            background: linear-gradient(135deg, #007bff, #6610f2);
+            color: white;
+        }
+
+        .upi-icon {
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            color: white;
+        }
+
+        /* NEW: Styles for checkout items display */
+        #checkout-items-container {
+            margin-top: 40px; /* Adjust spacing as needed */
+            margin-bottom: 30px;
+        }
+
+        #checkout-items-container h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .checkout-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .checkout-item:last-child {
+            border-bottom: none;
+        }
+
+        .checkout-item .item-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .checkout-item .item-image {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .checkout-item .details h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .checkout-item .details p {
+            font-size: 14px;
+            color: #666;
+            margin: 0;
+        }
+
+        .checkout-item .item-subtotal {
+            font-weight: 600;
+            font-size: 16px;
+            color: #2c3e50;
+        }
+
+        /* Existing Bill Details styles (ensure these are present) */
+        .bill-details {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .bill-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+        }
+
+        .bill-row:not(:last-child) {
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .bill-row.total {
+            font-weight: 700;
+            font-size: 18px;
+            color: #2c3e50;
+            border-top: 2px solid #dee2e6;
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+
+        .discount {
+            color: #28a745;
+        }
+
+        .savings-banner {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .apply-coupon {
+            border: 2px dashed #feca57;
+            background: rgba(254,202,87,0.1);
+            color: #f39c12;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .apply-coupon:hover {
+            background: rgba(254,202,87,0.2);
+        }
+
+        .contactless-delivery {
+            background: rgba(108,117,125,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .contactless-delivery label {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .contactless-delivery input {
+            margin-top: 2px;
+        }
+
+        .place-order-btn {
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 15px;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .place-order-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(255,107,107,0.3);
+        }
+
+        .order-note {
+            background: rgba(255,193,7,0.1);
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 14px;
+            color: #856404;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .checkout-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .right-section {
+                border-left: none;
+                border-top: 1px solid #e9ecef;
+            }
+            
+            body {
+                padding: 10px;
+            }
+            
+            .left-section,
+            .right-section {
+                padding: 20px;
+            }
+        }
+
+        .radio-input {
+            accent-color: #ff6b6b;
+        }
+
+        /* Styles for the new address popup */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .close-button {
+            color: #aaa;
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-content h3 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 22px;
+        }
+
+        .modal-content label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .modal-content input[type="text"],
+        .modal-content textarea,
+        .modal-content select {
+            width: calc(100% - 20px);
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        .modal-content input[type="text"]:focus,
+        .modal-content textarea:focus,
+        .modal-content select:focus {
+            border-color: #667eea;
+            outline: none;
+        }
+
+        .modal-content button {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .modal-content button:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }

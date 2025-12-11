@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reservations - CocoChutney</title>
+    <link rel="shortcut icon" href="https://cocochutney.com/favicon.png" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        /* Inherit base styles from previous example (body, font, colors etc.) */
+        body {
+            background-color: #121212;
+            color: #f0f0f0;
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex; /* Added flex to help push footer down */
+            flex-direction: column; /* Stack content and footer */
+            min-height: 100vh; /* Minimum height for layout */
+        }
+#nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 80px; /* Taller nav bar for a bolder presence */
+    width: 100%;
+    padding: 0 40px; /* Increased padding */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 999;
+    background-color: rgba(10, 10, 10, 0.98); /* Almost solid dark background */
+    backdrop-filter: blur(15px); /* Stronger blur effect */
+    border-bottom: 1px solid rgba(255, 153, 0, 0.1); /* Very subtle accent border */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4); /* Deeper shadow */
+    box-sizing: border-box;
+    transition: all 0.4s ease;
+}
+
+#nav.scrolled {
+    background-color: rgba(0, 0, 0, 0.98); /* Solid black when scrolled */
+    border-bottom: 1px solid #ff9900; /* More prominent border when scrolled */
+    box-shadow: 0 6px 35px rgba(0, 0, 0, 0.6); /* Even deeper shadow */
+}
+
+#nav img {
+    height: 50px; /* Slightly larger logo */
+    object-fit: contain;
+    filter: drop-shadow(0 0 5px rgba(255, 153, 0, 0.3)); /* Subtle glow for the logo */
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+#nav img:hover {
+    transform: scale(1.08); /* More pronounced scale */
+    filter: drop-shadow(0 0 10px rgba(255, 153, 0, 0.6)); /* Brighter glow */
+}
+
+#nav .nav-links {
+    display: none; /* Hidden by default for mobile, will be flex on desktop */
+    gap: 3rem; /* Wider gap for desktop links */
+}
+#nav .nav-links h4 {
+    text-transform: uppercase;
+    font-weight: 500;
+    cursor: pointer;
+    font-size: 1.05rem; /* Slightly larger font */
+    color: #e0e0e0; /* Softer white for text */
+    letter-spacing: 0.05em; /* Added letter spacing */
+    transition: all 0.3s ease;
+    position: relative;
+}
+#nav .nav-links h4::after {
+    content: '';
+    position: absolute;
+    bottom: -8px; /* Lower underline */
+    left: 0;
+    width: 0;
+    height: 3px; /* Thicker underline */
+    background: linear-gradient(90deg, #ff9900, #ffcc00); /* Gradient underline */
+    transition: width 0.3s ease, transform 0.3s ease;
+}
+#nav .nav-links h4:hover::after {
+    width: 100%;
+    transform: scaleX(1.05); /* Slight stretch for hover */
+}
+#nav .nav-links h4 a {
+    color: inherit;
+    text-decoration: none;
+}
+#nav .nav-links h4:hover, #nav .nav-links h4 a:hover {
+    color: #ff9900; /* Vibrant orange on hover */
+    text-shadow: 0 0 8px rgba(255, 153, 0, 0.6); /* Subtle text glow */
+}
+/* Ensure the active link styling is present if you use it */
+#nav .nav-links h4 a.active {
+    color: #ff9900;
+    font-weight: 700;
+    text-shadow: 0 0 5px rgba(255, 153, 0, 0.8);
+}
+
+
+/* ========== Hamburger Menu & Mobile Nav (Premium Refinement from Cart.css) ========== */
+#hamburger-menu {
+    display: block; /* Shown by default */
+    z-index: 1001;
+}
+#hamburger-menu i {
+    font-size: 2.2rem; /* Larger icon */
+    color: white;
+    cursor: pointer;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+#hamburger-menu i:hover {
+    transform: scale(1.15);
+    color: #ff9900;
+    text-shadow: 0 0 10px rgba(255, 153, 0, 0.8);
+}
+
+#mobile-nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    max-width: 350px; /* Slightly wider mobile menu */
+    height: 100vh;
+    background: linear-gradient(180deg, rgba(10, 10, 10, 0.98), rgba(20, 20, 20, 0.98)); /* Vertical gradient */
+    backdrop-filter: blur(25px); /* Even stronger blur */
+    padding: 100px 40px 40px; /* More padding */
+    z-index: 1000;
+    transform: translateX(100%);
+    transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1); /* Slower, more sophisticated ease */
+    box-shadow: -15px 0 40px rgba(0, 0, 0, 0.6); /* Deeper shadow */
+    border-left: 1px solid rgba(255, 153, 0, 0.1); /* Subtle border */
+    box-sizing: border-box;
+}
+#mobile-nav.open {
+    transform: translateX(0);
+}
+
+#mobile-nav i#close-menu {
+    position: absolute;
+    top: 30px; /* Adjusted positioning */
+    right: 30px;
+    font-size: 1.8rem; /* Larger close icon */
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+#mobile-nav i#close-menu:hover {
+    color: #ff9900;
+    transform: scale(1.2);
+}
+
+#mobile-nav ul {
+    list-style: none;
+    margin-top: 50px; /* More margin */
+    padding: 0;
+}
+#mobile-nav ul li {
+    margin: 25px 0; /* More spacing */
+    opacity: 0;
+    transform: translateX(30px); /* Larger initial translation */
+    animation: slideInMobile 0.6s ease forwards; /* Slightly longer animation */
+}
+#mobile-nav ul li:nth-child(2) { animation-delay: 0.15s; } /* Adjusted delays */
+#mobile-nav ul li:nth-child(3) { animation-delay: 0.3s; }
+#mobile-nav ul li:nth-child(4) { animation-delay: 0.45s; }
+#mobile-nav ul li:nth-child(5) { animation-delay: 0.6s; }
+
+#mobile-nav ul li a {
+    text-decoration: none;
+    color: #e0e0e0;
+    font-size: 1.2rem; /* Larger font size */
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    transition: all 0.3s ease;
+    display: block;
+    padding: 18px 0; /* More padding */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08); /* More subtle border */
+    position: relative;
+}
+
+#mobile-nav ul li a::before {
+    content: '';
+    position: absolute;
+    left: -10px; /* Start slightly outside */
+    bottom: 0;
+    width: 0;
+    height: 3px;
+    background: #ff9900;
+    transition: width 0.3s ease, transform 0.3s ease;
+}
+
+#mobile-nav ul li a:hover::before,
+#mobile-nav ul li a.active-link::before {
+    width: calc(100% + 20px); /* Wider underline */
+    transform: translateX(10px); /* Slide effect with underline */
+}
+
+#mobile-nav ul li a:hover, #mobile-nav ul li a.active-link {
+    color: #ff9900;
+    transform: translateX(15px); /* More pronounced slide effect */
+    text-shadow: 0 0 5px rgba(255, 153, 0, 0.6);
+}
+
+/* Re-using mobile slide-in animation from original menu.css */
+@keyframes slideInMobile {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}   
+        body::-webkit-scrollbar {
+    width: 6px; /* Slightly wider for better visibility */
+    background: linear-gradient(180deg, #0c0c0c, #1a1a1a); /* Gradient background */
+}
+
+body::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #ff9900, #ffcc00); /* Gradient thumb */
+    border-radius: 50px;
+    box-shadow: 0 0 10px rgba(255, 153, 0, 0.5); /* Subtle glow */
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #ffb300, #ffd700); /* Brighter on hover */
+    box-shadow: 0 0 15px rgba(255, 153, 0, 0.8); /* Stronger glow */
+}
+
+        /* Main content container for Reservations */
+        .reservation-main-container {
+            padding-top: 12vh; /* Adjusted: Increased space below nav */
+            width: 100%;
+            flex-grow: 1; /* Allow it to take up available space */
+            display: flex; /* Use flexbox for alignment */
+            flex-direction: column; /* Stack children vertically */
+            align-items: center; /* Center children horizontally */
+            /* Removed justify-content: center; - Let content flow naturally after scroller */
+            padding-bottom: 5vh; /* Space before footer */
+            box-sizing: border-box;
+        }
+
+        /* Reservation Section Styling */
+        .reservation-section {
+            background-color: #1e1e1e; /* Slightly lighter dark background for the form area */
+            padding: 5vh 6vw;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+            width: 80%;
+            max-width: 700px; /* Max width for the form container */
+            margin-top: 10vh; /* Adjusted: Increased space below scroller */
+            text-align: center;
+        }
+
+        .reservation-section h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: #ff9900; /* Orange accent */
+            font-weight: 700;
+            margin-bottom: 1em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Form Styling */
+        .reservation-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Two columns for inputs */
+            gap: 20px 30px; /* Row and column gap */
+            margin-top: 2em;
+            text-align: left; /* Align labels and inputs left */
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        /* Span some elements across both columns */
+        .form-group.full-width {
+            grid-column: 1 / -1; /* Span across all columns */
+        }
+
+
+        .form-group label {
+            font-size: 0.95em;
+            color: #ccc;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            background-color: #333;
+            border: 1px solid #555;
+            color: #f0f0f0;
+            padding: 12px 15px;
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: 'Montserrat', sans-serif;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            width: 100%; /* Ensure inputs take full width */
+            box-sizing: border-box; /* Include padding/border in width */
+        }
+        /* Style for date input */
+        .form-group input[type="date"],
+        .form-group input[type="time"] {
+            /* Attempt to style date/time picker indicator */
+            color-scheme: dark; /* Hint for dark mode pickers */
+        }
+
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #ff9900; /* Orange border on focus */
+            box-shadow: 0 0 0 3px rgba(255, 153, 0, 0.3); /* Orange glow */
+        }
+
+        .form-group textarea {
+            resize: vertical; /* Allow vertical resize only */
+            min-height: 80px;
+        }
+
+        /* Booking Fee Info */
+        .booking-fee-info {
+            grid-column: 1 / -1; /* Span full width */
+            background-color: rgba(255, 153, 0, 0.1); /* Light orange background */
+            color: #ffcc80; /* Lighter orange text */
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 1em;
+            margin-bottom: 1em;
+            font-size: 0.95em;
+            text-align: center;
+            border: 1px dashed #ff9900;
+        }
+        .booking-fee-info strong {
+            font-weight: 700;
+            color: #ff9900; /* Brighter orange for the price */
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            grid-column: 1 / -1; /* Span full width */
+            background: linear-gradient(135deg, #ffcc00, #ff9800);
+            color: #121212; /* Dark text on button */
+            border: none;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.1s ease;
+            margin-top: 1.5em;
+            text-transform: uppercase;
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(135deg, #ffb300, #ff6f00);
+            transform: translateY(-2px); /* Slight lift on hover */
+        }
+        .submit-btn:active {
+            transform: translateY(0px); /* Press down effect */
+        }
+
+
+        /* Booking Policy Text */
+        .booking-policy {
+            margin-top: 2.5em;
+            font-size: 0.85em;
+            color: #aaa;
+            line-height: 1.6;
+            text-align: center;
+            grid-column: 1 / -1; /* Span full width */
+        }
+        .booking-policy a {
+            color: #ff9900;
+            text-decoration: underline;
+        }
+
+
+        /* Responsiveness */
+        @media (max-width: 768px) {
+            .reservation-section {
+                width: 90%;
+                padding: 4vh 5vw;
+            }
+            .reservation-form {
+                grid-template-columns: 1fr; /* Stack inputs into a single column */
+                gap: 20px 0; /* Only row gap needed */
+            }
+            /* Ensure all form groups are full width on mobile */
+            .form-group {
+                grid-column: 1 / -1 !important;
+            }
+            #nav .nav-links { display: none; } /* Hide desktop nav */
+            #hamburger-menu { display: block; /* Show hamburger */ }
+            /* ... other responsive nav adjustments */
+        }
+        @media (max-width: 480px) {
+            .reservation-section h2 {
+                font-size: clamp(1.8rem, 7vw, 2.5rem);
+            }
+            .form-group input, .form-group select, .form-group textarea {
+                padding: 10px 12px;
+                font-size: 0.95em;
+            }
+            .submit-btn {
+                font-size: 1em;
+                padding: 12px 15px;
+            }
+             /* Adjust margin top for reservation section on small screens */
+            .reservation-section {
+                 margin-top: 25vh; /* Slightly less margin on smaller screens */
+            }
+             /* Adjust padding top for main container on small screens */
+             .reservation-main-container {
+                 padding-top: 20vh;
+                 margin-top: 13vh; /* Adjust padding top for smaller screens */
+             }
+            
+        }
+
+        /* Styles for the main scroller container */
+        #scroller {
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin-bottom: -30vh;
+    padding: 2vh 0;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: -30vh;
+}
+#scroller::-webkit-scrollbar { display: none; }
+#scroller-in {
+    display: inline-block;
+    /* Scroller animation */
+    animation: scroll 90s linear infinite;
+}
+#scroller h4 {
+    display: inline-block;
+    font-size: clamp(6vw, 12vw, 12rem);
+    font-weight: 900;
+    margin-right: 2vw;
+    color: #fff;
+    -webkit-text-stroke: 0;
+    transition: all 0.3s linear;
+    cursor: pointer;
+}
+#scroller h4:hover {
+    color: #ff9900;
+    -webkit-text-stroke: 0.2vw #ff9900;
+}
+/* Scroller animation keyframes */
+@keyframes scroll {
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+
+
+        /* ========== Footer Styles (reuse from previous page) ========== */
+        #footer {
+            background-color: #1e1e1e;
+            padding: 4vh 8vw;
+            color: #ccc;
+            border-top: 2px solid #ff9900;
+            /* Ensure footer is at the bottom */
+            margin-top: auto; /* Pushes footer down if content is short */
+            width: 100%; /* Take full width */
+            box-sizing: border-box; /* Include padding in width calculation */
+        }
+        .footer-links { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 2em; margin-bottom: 3vh; }
+        .footer-column h3 { color: #ff9900; font-size: 1.2em; margin-bottom: 1em; font-weight: 600; }
+        .footer-column a, .footer-column p { color: #ccc; text-decoration: none; display: block; margin-bottom: 0.5em; font-size: 0.95em; line-height: 1.6; }
+        .footer-column a:hover { color: #ffffff; }
+        .footer-bottom { text-align: center; margin-top: 2vh; padding-top: 2vh; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.9em; color: #aaa; }
+        /* ========== End Footer Styles ========== */
+
+        /* Responsive adjustments for Footer */
+        @media (max-width: 768px) {
+            #footer { padding: 3vh 5vw; }
+            .footer-links { gap: 1.5em; }
+            .footer-column h3 { font-size: 1.1em; }
+            .footer-column a, .footer-column p { font-size: 0.9em; }
+            .footer-bottom { font-size: 0.8em; }
+        }
+        @media (max-width: 480px) {
+            #footer { padding: 2vh 4vw; }
+            .footer-links { gap: 1em; }
+            .footer-column h3 { font-size: 1em; }
+            .footer-column a, .footer-column p { font-size: 0.8em; }
+            .footer-bottom { font-size: 0.7em; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="nav">
+        <img src="logo.png" alt="Coco Chutney Logo" />
+        <div class="nav-links">
+            <h4><a href="index.html">Home</a></h4>
+            <h4><a href="menu.html">Menu</a></h4>
+            <h4><a href="aboutus.html">About Us</a></h4>
+            <h4><a href="reservation.html" class="active">Reservations</a></h4> <h4><a href="contact.html">Contact</a></h4>
+        </div>
+        <div id="hamburger-menu">
+            <i class="ri-menu-3-line" id="open-menu"></i>
+        </div>
+    </div>
+
+    <div id="mobile-nav">
+        <i class="ri-close-line" id="close-menu"></i>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="aboutus.html">About Us</a></li>
+            <li><a href="reservation.html" class="active-link">Reservations</a></li> <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
+
+    <div class="reservation-main-container">
+
+        <div id="scroller">
+            <div id="scroller-in">
+                <h4>BOOK NOW</h4>
+                <h4>RESERVE YOUR TABLE</h4>
+                <h4>SECURE YOUR SPOT</h4>
+                <h4>ONLINE BOOKING</h4>
+                <h4>PLAN YOUR VISIT</h4>
+            </div>
+        </div>
+
+        <div class="reservation-section">
+            <h2>Book Your Table</h2>
+            <p style="color: #ccc; margin-bottom: 2em; font-size: 1.05em;">Secure your spot at CocoChutney and experience authentic South Indian flavours. Book online in advance!</p>
+
+            <form class="reservation-form" id="booking-form" action="cocochutney/initiate_payment_razorpay.php" method="POST">
+
+                <div class="form-group">
+                    <label for="guest-name">Full Name</label>
+                    <input type="text" id="guest-name" name="guest_name" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="guest-phone">Phone Number</label>
+                    <input type="tel" id="guest-phone" name="guest_phone" placeholder="e.g., 9876543210" required pattern="[0-9]{10}">
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="guest-email">Email Address</label>
+                    <input type="email" id="guest-email" name="guest_email" placeholder="you@example.com" required>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="reservation-date">Select Date</label>
+                    <input type="date" id="reservation-date" name="reservation_date" required >
+                </div>
+
+                <div class="form-group">
+                    <label for="reservation-time">Select Time Slot</label>
+                    <select id="reservation-time" name="reservation_time" required>
+                        <option value="" disabled selected>-- Choose a time --</option>
+                        <optgroup label="Lunch">
+                            <option value="12:00">12:00 PM</option>
+                            <option value="12:30">12:30 PM</option>
+                            <option value="13:00">1:00 PM</option>
+                            <option value="13:30">1:30 PM</option>
+                            <option value="14:00">2:00 PM</option>
+                        </optgroup>
+                        <optgroup label="Dinner">
+                            <option value="19:00">7:00 PM</option>
+                            <option value="19:30">7:30 PM</option>
+                            <option value="20:00">8:00 PM</option>
+                            <option value="20:30">8:30 PM</option>
+                            <option value="21:00">9:00 PM</option>
+                            <option value="21:30">9:30 PM</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="number-guests">Number of Guests</label>
+                    <input type="number" id="number-guests" name="number_guests" min="1" max="10" placeholder="e.g., 4" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="occasion">Occasion (Optional)</label>
+                    <select id="occasion" name="occasion">
+                        <option value="">-- Select if any --</option>
+                        <option value="Birthday">Birthday</option>
+                        <option value="Anniversary">Anniversary</option>
+                        <option value="Business Meeting">Business Meeting</option>
+                        <option value="Casual Dining">Casual Dining</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+
+                <div class="form-group full-width">
+                    <label for="special-requests">Special Requests (Optional)</label>
+                    <textarea id="special-requests" name="special_requests" rows="3" placeholder="e.g., Allergies, high chair needed, near window..."></textarea>
+                </div>
+
+                <div class="booking-fee-info">
+                    Please note: A nominal booking fee of <strong>₹100</strong> is required to confirm your reservation. This amount will be adjusted against your final bill.
+                </div>
+
+
+                <button type="submit" class="submit-btn">Request Booking</button>
+
+
+                <div class="booking-policy">
+                    By clicking 'Request Booking', you agree to our reservation terms. We hold tables for 15 minutes past the reservation time. For cancellations, please contact us at least 2 hours in advance. The booking fee is non-refundable for no-shows.
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+    <footer id="footer">
+        <div class="footer-links">
+            <div class="footer-column"> <h3>Menu</h3> <a href="#">Appetizers</a> <a href="#">Main Courses</a> <a href="#">Desserts</a> <a href="#">Beverages</a> </div>
+            <div class="footer-column"> <h3>Explore</h3> <a href="#">Reservations</a> <a href="#">Contact Us</a> <a href="about.html">About Us</a> </div>
+            <div class="footer-column"> <h3>Visit Us</h3> <p> Satya The Hive,<br /> Dwarka ExpressWay, Sector 102,<br /> Gurgaon, Haryana<br /> <a href="mailto:info@cocochutney.com">info@cocochutney.com</a> </p> </div>
+        </div>
+        <div class="footer-bottom"> <p>&copy; 2025 Coco Chutney. All rights reserved.</p> </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const dateInput = document.getElementById('reservation-date');
+            if(dateInput) {
+                const today = new Date();
+                // Format date as YYYY-MM-DD for the input's min attribute
+                const year = today.getFullYear();
+                const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+                const day = String(today.getDate()).padStart(2, '0');
+                const todayString = `${year}-${month}-${day}`;
+                dateInput.setAttribute('min', todayString);
+            }
+        });
+        // Mobile Navigation JavaScript
+document.addEventListener('DOMContentLoaded', function() {
+    // Get elements
+    const hamburgerMenu = document.getElementById('hamburger-menu');
+    const mobileNav = document.getElementById('mobile-nav');
+    const closeMenu = document.getElementById('close-menu');
+    const openMenu = document.getElementById('open-menu');
+    
+    // Check if elements exist to avoid errors
+    if (!hamburgerMenu || !mobileNav || !closeMenu) {
+        console.error('Mobile navigation elements not found');
+        return;
+    }
+
+    // Open mobile menu function
+    function openMobileMenu() {
+        mobileNav.classList.add('open');
+        document.body.style.overflow = 'hidden'; // Prevent body scrolling
+        console.log('Mobile menu opened'); // Debug log
+    }
+
+    // Close mobile menu function
+    function closeMobileMenu() {
+        mobileNav.classList.remove('open');
+        document.body.style.overflow = 'auto'; // Allow body scrolling
+        console.log('Mobile menu closed'); // Debug log
+    }
+
+    // Event listeners
+    hamburgerMenu.addEventListener('click', function(e) {
+        e.preventDefault();
+        console.log('Hamburger clicked'); // Debug log
+        openMobileMenu();
+    });
+
+    closeMenu.addEventListener('click', function(e) {
+        e.preventDefault();
+        console.log('Close button clicked'); // Debug log
+        closeMobileMenu();
+    });
+
+    // Close menu when clicking on navigation links
+    const mobileNavLinks = document.querySelectorAll('#mobile-nav a');
+    mobileNavLinks.forEach(function(link) {
+        link.addEventListener('click', function() {
+            closeMobileMenu();
+        });
+    });
+
+    // Close menu with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && mobileNav.classList.contains('open')) {
+            closeMobileMenu();
+        }
+    });
+
+    // Close menu when window is resized to desktop size
+    window.addEventListener('resize', function() {
+        if (window.innerWidth >= 768 && mobileNav.classList.contains('open')) {
+            closeMobileMenu();
+        }
+    });
+
+    // Optional: Add scroll effect to navbar
+    const nav = document.getElementById('nav');
+    if (nav) {
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+    }
+});
+    </script>
+
+</body>
+</html>

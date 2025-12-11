@@ -1,0 +1,500 @@
+/* ========== Global Styles ========== */
+
+/* Import Montserrat font */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+    color: #fff; /* Default text color */
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    background-color: #121212; /* Consistent dark background */
+}
+
+/* Custom selection color */
+*::selection {
+    background-color: #fff;
+    color: #ff9900;
+}
+
+/* Custom scrollbar styles (for desktop browsers) */
+body::-webkit-scrollbar {
+    width: 0.5vw;
+    background: #ff9900; /* Track color */
+}
+body::-webkit-scrollbar-thumb {
+    background-color: #fff; /* Thumb color */
+    border-radius: 50px;
+}
+#nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 80px; /* Taller nav bar for a bolder presence */
+    width: 100%;
+    padding: 0 40px; /* Increased padding */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 999;
+    background-color: rgba(10, 10, 10, 0.98); /* Almost solid dark background */
+    backdrop-filter: blur(15px); /* Stronger blur effect */
+    border-bottom: 1px solid rgba(255, 153, 0, 0.1); /* Very subtle accent border */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4); /* Deeper shadow */
+    box-sizing: border-box;
+    transition: all 0.4s ease;
+}
+
+#nav.scrolled {
+    background-color: rgba(0, 0, 0, 0.98); /* Solid black when scrolled */
+    border-bottom: 1px solid #ff9900; /* More prominent border when scrolled */
+    box-shadow: 0 6px 35px rgba(0, 0, 0, 0.6); /* Even deeper shadow */
+}
+
+#nav img {
+    height: 50px; /* Slightly larger logo */
+    object-fit: contain;
+    filter: drop-shadow(0 0 5px rgba(255, 153, 0, 0.3)); /* Subtle glow for the logo */
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+#nav img:hover {
+    transform: scale(1.08); /* More pronounced scale */
+    filter: drop-shadow(0 0 10px rgba(255, 153, 0, 0.6)); /* Brighter glow */
+}
+
+#nav .nav-links {
+    display: none; /* Hidden by default for mobile, will be flex on desktop */
+    gap: 3rem; /* Wider gap for desktop links */
+}
+#nav .nav-links h4 {
+    text-transform: uppercase;
+    font-weight: 500;
+    cursor: pointer;
+    font-size: 1.05rem; /* Slightly larger font */
+    color: #e0e0e0; /* Softer white for text */
+    letter-spacing: 0.05em; /* Added letter spacing */
+    transition: all 0.3s ease;
+    position: relative;
+}
+#nav .nav-links h4::after {
+    content: '';
+    position: absolute;
+    bottom: -8px; /* Lower underline */
+    left: 0;
+    width: 0;
+    height: 3px; /* Thicker underline */
+    background: linear-gradient(90deg, #ff9900, #ffcc00); /* Gradient underline */
+    transition: width 0.3s ease, transform 0.3s ease;
+}
+#nav .nav-links h4:hover::after {
+    width: 100%;
+    transform: scaleX(1.05); /* Slight stretch for hover */
+}
+#nav .nav-links h4 a {
+    color: inherit;
+    text-decoration: none;
+}
+#nav .nav-links h4:hover, #nav .nav-links h4 a:hover {
+    color: #ff9900; /* Vibrant orange on hover */
+    text-shadow: 0 0 8px rgba(255, 153, 0, 0.6); /* Subtle text glow */
+}
+/* Ensure the active link styling is present if you use it */
+#nav .nav-links h4 a.active {
+    color: #ff9900;
+    font-weight: 700;
+    text-shadow: 0 0 5px rgba(255, 153, 0, 0.8);
+}
+
+
+/* ========== Hamburger Menu & Mobile Nav (Premium Refinement from Cart.css) ========== */
+#hamburger-menu {
+    display: block; /* Shown by default */
+    z-index: 1001;
+}
+#hamburger-menu i {
+    font-size: 2.2rem; /* Larger icon */
+    color: white;
+    cursor: pointer;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+#hamburger-menu i:hover {
+    transform: scale(1.15);
+    color: #ff9900;
+    text-shadow: 0 0 10px rgba(255, 153, 0, 0.8);
+}
+
+#mobile-nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    max-width: 350px; /* Slightly wider mobile menu */
+    height: 100vh;
+    background: linear-gradient(180deg, rgba(10, 10, 10, 0.98), rgba(20, 20, 20, 0.98)); /* Vertical gradient */
+    backdrop-filter: blur(25px); /* Even stronger blur */
+    padding: 100px 40px 40px; /* More padding */
+    z-index: 1000;
+    transform: translateX(100%);
+    transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1); /* Slower, more sophisticated ease */
+    box-shadow: -15px 0 40px rgba(0, 0, 0, 0.6); /* Deeper shadow */
+    border-left: 1px solid rgba(255, 153, 0, 0.1); /* Subtle border */
+    box-sizing: border-box;
+}
+#mobile-nav.open {
+    transform: translateX(0);
+}
+
+#mobile-nav i#close-menu {
+    position: absolute;
+    top: 30px; /* Adjusted positioning */
+    right: 30px;
+    font-size: 1.8rem; /* Larger close icon */
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+#mobile-nav i#close-menu:hover {
+    color: #ff9900;
+    transform: scale(1.2);
+}
+
+#mobile-nav ul {
+    list-style: none;
+    margin-top: 50px; /* More margin */
+    padding: 0;
+}
+#mobile-nav ul li {
+    margin: 25px 0; /* More spacing */
+    opacity: 0;
+    transform: translateX(30px); /* Larger initial translation */
+    animation: slideInMobile 0.6s ease forwards; /* Slightly longer animation */
+}
+#mobile-nav ul li:nth-child(2) { animation-delay: 0.15s; } /* Adjusted delays */
+#mobile-nav ul li:nth-child(3) { animation-delay: 0.3s; }
+#mobile-nav ul li:nth-child(4) { animation-delay: 0.45s; }
+#mobile-nav ul li:nth-child(5) { animation-delay: 0.6s; }
+
+#mobile-nav ul li a {
+    text-decoration: none;
+    color: #e0e0e0;
+    font-size: 1.2rem; /* Larger font size */
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    transition: all 0.3s ease;
+    display: block;
+    padding: 18px 0; /* More padding */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08); /* More subtle border */
+    position: relative;
+}
+
+#mobile-nav ul li a::before {
+    content: '';
+    position: absolute;
+    left: -10px; /* Start slightly outside */
+    bottom: 0;
+    width: 0;
+    height: 3px;
+    background: #ff9900;
+    transition: width 0.3s ease, transform 0.3s ease;
+}
+
+#mobile-nav ul li a:hover::before,
+#mobile-nav ul li a.active-link::before {
+    width: calc(100% + 20px); /* Wider underline */
+    transform: translateX(10px); /* Slide effect with underline */
+}
+
+#mobile-nav ul li a:hover, #mobile-nav ul li a.active-link {
+    color: #ff9900;
+    transform: translateX(15px); /* More pronounced slide effect */
+    text-shadow: 0 0 5px rgba(255, 153, 0, 0.6);
+}
+
+/* Re-using mobile slide-in animation from original menu.css */
+@keyframes slideInMobile {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+body::-webkit-scrollbar {
+    width: 6px; /* Slightly wider for better visibility */
+    background: linear-gradient(180deg, #0c0c0c, #1a1a1a); /* Gradient background */
+}
+
+body::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #ff9900, #ffcc00); /* Gradient thumb */
+    border-radius: 50px;
+    box-shadow: 0 0 10px rgba(255, 153, 0, 0.5); /* Subtle glow */
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #ffb300, #ffd700); /* Brighter on hover */
+    box-shadow: 0 0 15px rgba(255, 153, 0, 0.8); /* Stronger glow */
+}
+
+/* Main content container for Contact */
+.contact-main-container {
+    padding-top: 10vh; /* Account for fixed nav height */
+    width: 100%;
+    flex-grow: 1; /* Allow it to take up available space */
+    display: flex;
+    flex-direction: column; /* Stack sections vertically */
+    align-items: center; /* Center sections horizontally */
+    padding-bottom: 5vh; /* Space before footer */
+    box-sizing: border-box;
+}
+
+/* Contact Section Styling (Form and Info) */
+.contact-section {
+    background-color: #1e1e1e; /* Match reservation section background */
+    padding: 5vh 6vw; /* Match reservation section padding */
+    border-radius: 15px; /* Match reservation section border-radius */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5); /* Match reservation section box-shadow */
+    width: 90%; /* Use percentage for width */
+    max-width: 900px; /* Limit max-width */
+    margin-top: 3vh;
+    display: grid; /* Use grid for layout inside the section */
+    grid-template-columns: 1fr 1fr; /* Two columns */
+    gap: 40px 60px; /* Gap between grid items */
+    text-align: left; /* Align content left */
+}
+
+/* Adjust grid for smaller screens */
+@media (max-width: 768px) {
+    .contact-section {
+        grid-template-columns: 1fr; /* Stack columns on smaller screens */
+        gap: 40px 0; /* Only row gap needed */
+        padding: 4vh 5vw; /* Adjust padding */
+        width: 95%; /* Adjust width */
+    }
+}
+
+.contact-section h2 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: #ff9900; /* Orange accent */
+    font-weight: 700;
+    margin-bottom: 0.8em; /* Adjusted margin */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    grid-column: 1 / -1; /* Make heading span across all columns */
+    text-align: center; /* Center the heading */
+}
+
+/* Contact Form Styling (Similar to Reservation Form) */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Gap between form groups */
+    grid-column: 1 / 2; /* Place form in the first column */
+}
+@media (max-width: 768px) {
+    .contact-form {
+        grid-column: 1 / -1; /* Make form span full width on smaller screens */
+    }
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 0.95em;
+    color: #ccc;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[name="subject"], /* Style subject input */
+.contact-form textarea {
+    background-color: #333;
+    border: 1px solid #555;
+    color: #f0f0f0;
+    padding: 12px 15px;
+    border-radius: 8px;
+    font-size: 1em;
+    font-family: 'Montserrat', sans-serif;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    width: 100%; /* Ensure inputs take full width */
+    box-sizing: border-box; /* Include padding/border in width */
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: #ff9900; /* Orange border on focus */
+    box-shadow: 0 0 0 3px rgba(255, 153, 0, 0.3); /* Orange glow */
+}
+
+.contact-form textarea {
+    resize: vertical; /* Allow vertical resize */
+    min-height: 120px; /* Taller textarea for messages */
+}
+
+/* Submit Button */
+.contact-form .submit-btn {
+    /* Use the same submit button style as reservation form */
+    background: linear-gradient(135deg, #ffcc00, #ff9800);
+    color: #121212;
+    border: none;
+    padding: 15px 20px;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.1s ease;
+    margin-top: 1em; /* Adjusted margin */
+    text-transform: uppercase;
+    width: 100%; /* Full width button */
+    box-sizing: border-box;
+}
+
+.contact-form .submit-btn:hover {
+    background: linear-gradient(135deg, #ffb300, #ff6f00);
+    transform: translateY(-2px);
+}
+.contact-form .submit-btn:active {
+    transform: translateY(0px);
+}
+
+
+/* Location Info and Map Styling */
+.location-info {
+    grid-column: 2 / 3; /* Place info in the second column */
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Space between info blocks */
+}
+@media (max-width: 768px) {
+    .location-info {
+        grid-column: 1 / -1; /* Make info span full width on smaller screens */
+    }
+}
+
+.location-info h3 {
+    font-size: 1.5em;
+    color: #ff9900; /* Orange accent */
+    font-weight: 600;
+    margin-bottom: 0.5em;
+}
+
+.location-info p {
+    font-size: 1em;
+    color: #f0f0f0; /* Light text color */
+    line-height: 1.6;
+    margin-bottom: 0; /* Remove default paragraph margin */
+}
+.location-info a { /* Style for email/phone links */
+    color: #ffcc80; /* Lighter orange for links */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.location-info a:hover {
+    color: #ff9900; /* Orange on hover */
+    text-decoration: underline;
+}
+
+
+.map-container {
+    width: 100%; /* Map takes full width of its grid column */
+    height: 350px; /* Fixed height for the map */
+    border-radius: 8px; /* Match input/button border-radius */
+    overflow: hidden; /* Hide anything outside the border-radius */
+    border: 1px solid #555; /* Optional: Add a border around the map */
+    /* Ensure the map iframe inside takes up the full container space */
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 400px;
+    border: 0; /* Remove iframe default border */
+}
+/* Styles for the main scroller container */
+#scroller {
+    white-space: nowrap; /* Prevents the text from wrapping to the next line */
+    overflow-x: auto; /* Enables horizontal scrolling when content overflows */
+    overflow-y: hidden; /* Hides vertical overflow */
+    margin-bottom: 5vh; /* Space below the scroller */
+    padding: 2vh 0; /* Add vertical padding */
+}
+
+/* Styles to hide the default Webkit (Chrome, Safari, Edge) scrollbar */
+#scroller::-webkit-scrollbar {
+    display: none; /* Hides the scrollbar */
+}
+
+/* Styles for the inner container that holds the text */
+#scroller-in {
+    display: inline-block; /* Allows content to flow in a single line */
+    animation: scroll 60s linear infinite; /* Applies the scrolling animation */
+}
+
+/* Styles for the individual text elements within the scroller */
+#scroller h4 {
+    display: inline-block; /* Allows h4 elements to be in a single line */
+    font-size: clamp(6vw, 12vw, 12rem); /* Responsive font size */
+    font-weight: 900;
+    margin-right: 2vw; /* Space between text elements */
+    color: #000; /* Text color (often hidden by stroke) */
+    -webkit-text-stroke: 0.2vw #fff; /* White text stroke */
+    transition: all 0.3s linear;
+    cursor: pointer;
+}
+
+/* Hover effect for the text elements */
+#scroller h4:hover {
+    color: #ff9900; /* Orange text color on hover */
+    -webkit-text-stroke: 0.2vw #ff9900; /* Orange text stroke on hover */
+}
+
+/* Keyframes for the horizontal scrolling animation */
+@keyframes scroll {
+    to {
+        transform: translateX(-100%); /* Moves the content 100% of its width to the left */
+    }
+}
+
+
+/* ========== Footer Styles (Consistent Styles) ========== */
+/* These styles should ideally be in a shared style.css file */
+#footer {
+    background-color: #1e1e1e; /* Consistent dark background */
+    padding: 4vh 8vw; /* Consistent padding */
+    color: #ccc;
+    border-top: 2px solid #ff9900; /* Consistent accent border */
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: auto; /* Pushes footer down if content is short */
+}
+.footer-links { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 2em; margin-bottom: 3vh; }
+.footer-column h3 { color: #ff9900; font-size: 1.2em; margin-bottom: 1em; font-weight: 600; }
+.footer-column a, .footer-column p { color: #ccc; text-decoration: none; display: block; margin-bottom: 0.5em; font-size: 0.95em; line-height: 1.6; }
+.footer-column a:hover { color: #ffffff; }
+.footer-bottom { text-align: center; margin-top: 2vh; padding-top: 2vh; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.9em; color: #aaa; }
+
+/* Responsive adjustments for Footer */
+@media (max-width: 768px) {
+    #footer { padding: 3vh 5vw; }
+    .footer-links { gap: 1.5em; }
+    .footer-column h3 { font-size: 1.1em; }
+    .footer-column a, .footer-column p { font-size: 0.9em; }
+    .footer-bottom { font-size: 0.8em; }
+}
+@media (max-width: 480px) {
+    #footer { padding: 2vh 4vw; }
+    .footer-links { gap: 1em; }
+    .footer-column h3 { font-size: 1em; }
+    .footer-column a, .footer-column p { font-size: 0.8em; }
+    .footer-bottom { font-size: 0.7em; }
+}
