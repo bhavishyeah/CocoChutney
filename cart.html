@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart - CocoChutney</title>
+    <link rel="shortcut icon" href="https://cocochutney.com/favicon.png" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="cart.css">
+</head>
+<body>
+
+    <div id="cursor"></div>
+    <div id="cursor-blur"></div>
+
+    <div id="nav">
+        <img src="logo.png" alt="Coco Chutney Logo" />
+        <div class="nav-links">
+            <h4><a href="index.html">Home</a></h4>
+            <h4><a href="menu.html">Menu</a></h4> 
+            <h4><a href="aboutus.html">About Us</a></h4>
+            <h4><a href="reservation.html">Reservations</a></h4>
+            <h4><a href="contact.html">Contact</a></h4>
+        </div>
+    </div>
+
+
+    <video autoplay loop muted src="d2e91d65-90a0-4766-8059-2914891b6742.mp4"></video>
+
+    <div class="page-content">
+        <div id="scroller">
+            <div id="scroller-in">
+                 <h4>YOUR CART    .</h4>
+                 <h4>REVIEW ITEMS    .</h4>
+                 <h4>CHECKOUT    .</h4>
+                 <h4>THANK YOU    .</h4>
+                 <h4>COCOCHUTNEY    .</h4>
+            </div>
+        </div>
+
+        <h2>Cart</h2>
+
+        <div id="cart-items">
+            <p class="empty-cart-message">Oops! Your cart is empty</p> </div>
+
+        <div class="cart-footer">
+            <div class="total-section">
+                <span>Total: ₹<span id="cart-total">0.00</span></span> </div>
+            <div class="cart-actions">
+                 <a href="menu.html" class="back-to-menu-btn">Back to Menu</a>
+                 
+                 <button class="clear-cart" onclick="clearCart()">Clear Cart</button>
+                <button class="checkout-btn" onclick="proceedToCheckout()">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <footer id="footer">
+      <div class="footer-links">
+        <div class="footer-column"> <h3>Menu</h3> <a href="#">Appetizers</a> <a href="#">Main Courses</a> <a href="#">Desserts</a> <a href="#">Beverages</a> </div>
+        <div class="footer-column"> <h3>Explore</h3> <a href="RESERVATION.HTML">Reservations</a> <a href="contact.html">Contact Us</a> <a href="about.html">About Us</a> </div>
+        <div class="footer-column"> <h3>Visit Us</h3> <p> Satya The Hive,<br /> Dwarka ExpressWay, Sector 102,<br /> Gurgaon, Haryana<br /> <a href="mailto:info@cocochutney.com">info@cocochutney.com</a> </p> </div>
+      </div>
+      <div class="footer-bottom"> <p>© 2025 Coco Chutney. All rights reserved.</p> </div>
+    </footer>
+
+    <script src="cart.js"></script>
+</body>
+</html>
