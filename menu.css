@@ -1,0 +1,1061 @@
+/* Import Montserrat font */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* ========== Global Styles & Reset (Premium Refinement from Cart.css) ========== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif; /* Ensure font is applied globally */
+    color: #f0f0f0; /* Consistent light text color, subtle off-white */
+    -webkit-tap-highlight-color: transparent; /* Disable default tap highlight */
+    outline: none;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px; /* Base font size for rem calculations */
+}
+
+body {
+    background-color: #0c0c0c; /* Even darker, almost black background (from cart.css) */
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    min-height: 100vh;
+    display: flex; /* Flex column for main content and footer */
+    flex-direction: column;
+    line-height: 1.7; /* Slightly increased line height for readability (from cart.css) */
+}
+
+/* Custom selection color (from cart.css) */
+*::selection {
+    background-color: #fff;
+    color: #ff9900;
+}
+
+/* Custom scrollbar styles (for desktop browsers) (from cart.css) */
+
+
+
+/* ========== Custom Cursor Styles (Premium Refinement from Cart.css) ========== */
+#cursor {
+    height: 25px; /* Slightly larger cursor */
+    width: 25px;
+    background-color: #ff9900; /* Vibrant orange accent */
+    border-radius: 50%;
+    position: fixed;
+    z-index: 99;
+    transition: all 0.08s ease-out; /* Faster, smoother transition */
+    pointer-events: none;
+    mix-blend-mode: difference; /* A cool blending effect for the cursor */
+    display: none; /* Hidden by default, shown by JS */
+}
+
+#cursor-blur {
+    height: 400px; /* Larger blur area */
+    width: 400px;
+    background-color: rgba(255, 153, 0, 0.08); /* More subtle semi-transparent orange */
+    border-radius: 50%;
+    position: fixed;
+    filter: blur(100px); /* More intense blur */
+    z-index: 9;
+    transition: all 0.3s ease-out; /* Smoother transition */
+    pointer-events: none;
+    display: none; /* Hidden by default, shown by JS */
+}
+body::-webkit-scrollbar {
+    width: 6px; /* Slightly wider for better visibility */
+    background: linear-gradient(180deg, #0c0c0c, #1a1a1a); /* Gradient background */
+}
+
+body::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #ff9900, #ffcc00); /* Gradient thumb */
+    border-radius: 50px;
+    box-shadow: 0 0 10px rgba(255, 153, 0, 0.5); /* Subtle glow */
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #ffb300, #ffd700); /* Brighter on hover */
+    box-shadow: 0 0 15px rgba(255, 153, 0, 0.8); /* Stronger glow */
+}
+/* Video Background (Subtle Overlay) (from cart.css) */
+video {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0.5; /* Slightly less opaque to let the dark background show more */
+    filter: brightness(0.8) grayscale(0.2); /* Slightly darker and desaturated */
+}
+
+/* ========== Main Content Wrapper (from cart.css) ========== */
+#main {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    z-index: 10; /* Above the video, and other elements below */
+    background-color: rgba(0, 0, 0, 0.6); /* Stronger background overlay from cart.css */
+    flex-grow: 1; /* Allow main content to grow and push footer down */
+}
+
+/* ========== Navigation Styles (Sleek & Premium - from cart.css) ========== */
+#nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 80px; /* Taller nav bar for a bolder presence */
+    width: 100%;
+    padding: 0 40px; /* Increased padding */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 999;
+    background-color: rgba(10, 10, 10, 0.98); /* Almost solid dark background */
+    backdrop-filter: blur(15px); /* Stronger blur effect */
+    border-bottom: 1px solid rgba(255, 153, 0, 0.1); /* Very subtle accent border */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4); /* Deeper shadow */
+    box-sizing: border-box;
+    transition: all 0.4s ease;
+}
+
+#nav.scrolled {
+    background-color: rgba(0, 0, 0, 0.98); /* Solid black when scrolled */
+    border-bottom: 1px solid #ff9900; /* More prominent border when scrolled */
+    box-shadow: 0 6px 35px rgba(0, 0, 0, 0.6); /* Even deeper shadow */
+}
+
+#nav img {
+    height: 50px; /* Slightly larger logo */
+    object-fit: contain;
+    filter: drop-shadow(0 0 5px rgba(255, 153, 0, 0.3)); /* Subtle glow for the logo */
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+#nav img:hover {
+    transform: scale(1.08); /* More pronounced scale */
+    filter: drop-shadow(0 0 10px rgba(255, 153, 0, 0.6)); /* Brighter glow */
+}
+
+#nav .nav-links {
+    display: none; /* Hidden by default for mobile, will be flex on desktop */
+    gap: 3rem; /* Wider gap for desktop links */
+}
+#nav .nav-links h4 {
+    text-transform: uppercase;
+    font-weight: 500;
+    cursor: pointer;
+    font-size: 1.05rem; /* Slightly larger font */
+    color: #e0e0e0; /* Softer white for text */
+    letter-spacing: 0.05em; /* Added letter spacing */
+    transition: all 0.3s ease;
+    position: relative;
+}
+#nav .nav-links h4::after {
+    content: '';
+    position: absolute;
+    bottom: -8px; /* Lower underline */
+    left: 0;
+    width: 0;
+    height: 3px; /* Thicker underline */
+    background: linear-gradient(90deg, #ff9900, #ffcc00); /* Gradient underline */
+    transition: width 0.3s ease, transform 0.3s ease;
+}
+#nav .nav-links h4:hover::after {
+    width: 100%;
+    transform: scaleX(1.05); /* Slight stretch for hover */
+}
+#nav .nav-links h4 a {
+    color: inherit;
+    text-decoration: none;
+}
+#nav .nav-links h4:hover, #nav .nav-links h4 a:hover {
+    color: #ff9900; /* Vibrant orange on hover */
+    text-shadow: 0 0 8px rgba(255, 153, 0, 0.6); /* Subtle text glow */
+}
+/* Ensure the active link styling is present if you use it */
+#nav .nav-links h4 a.active {
+    color: #ff9900;
+    font-weight: 700;
+    text-shadow: 0 0 5px rgba(255, 153, 0, 0.8);
+}
+
+
+/* ========== Hamburger Menu & Mobile Nav (Premium Refinement from Cart.css) ========== */
+#hamburger-menu {
+    display: block; /* Shown by default */
+    z-index: 1001;
+}
+#hamburger-menu i {
+    font-size: 2.2rem; /* Larger icon */
+    color: white;
+    cursor: pointer;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+#hamburger-menu i:hover {
+    transform: scale(1.15);
+    color: #ff9900;
+    text-shadow: 0 0 10px rgba(255, 153, 0, 0.8);
+}
+
+#mobile-nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    max-width: 350px; /* Slightly wider mobile menu */
+    height: 100vh;
+    background: linear-gradient(180deg, rgba(10, 10, 10, 0.98), rgba(20, 20, 20, 0.98)); /* Vertical gradient */
+    backdrop-filter: blur(25px); /* Even stronger blur */
+    padding: 100px 40px 40px; /* More padding */
+    z-index: 1000;
+    transform: translateX(100%);
+    transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1); /* Slower, more sophisticated ease */
+    box-shadow: -15px 0 40px rgba(0, 0, 0, 0.6); /* Deeper shadow */
+    border-left: 1px solid rgba(255, 153, 0, 0.1); /* Subtle border */
+    box-sizing: border-box;
+}
+#mobile-nav.open {
+    transform: translateX(0);
+}
+
+#mobile-nav i#close-menu {
+    position: absolute;
+    top: 30px; /* Adjusted positioning */
+    right: 30px;
+    font-size: 1.8rem; /* Larger close icon */
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+#mobile-nav i#close-menu:hover {
+    color: #ff9900;
+    transform: scale(1.2);
+}
+
+#mobile-nav ul {
+    list-style: none;
+    margin-top: 50px; /* More margin */
+    padding: 0;
+}
+#mobile-nav ul li {
+    margin: 25px 0; /* More spacing */
+    opacity: 0;
+    transform: translateX(30px); /* Larger initial translation */
+    animation: slideInMobile 0.6s ease forwards; /* Slightly longer animation */
+}
+#mobile-nav ul li:nth-child(2) { animation-delay: 0.15s; } /* Adjusted delays */
+#mobile-nav ul li:nth-child(3) { animation-delay: 0.3s; }
+#mobile-nav ul li:nth-child(4) { animation-delay: 0.45s; }
+#mobile-nav ul li:nth-child(5) { animation-delay: 0.6s; }
+
+#mobile-nav ul li a {
+    text-decoration: none;
+    color: #e0e0e0;
+    font-size: 1.2rem; /* Larger font size */
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    transition: all 0.3s ease;
+    display: block;
+    padding: 18px 0; /* More padding */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08); /* More subtle border */
+    position: relative;
+}
+
+#mobile-nav ul li a::before {
+    content: '';
+    position: absolute;
+    left: -10px; /* Start slightly outside */
+    bottom: 0;
+    width: 0;
+    height: 3px;
+    background: #ff9900;
+    transition: width 0.3s ease, transform 0.3s ease;
+}
+
+#mobile-nav ul li a:hover::before,
+#mobile-nav ul li a.active-link::before {
+    width: calc(100% + 20px); /* Wider underline */
+    transform: translateX(10px); /* Slide effect with underline */
+}
+
+#mobile-nav ul li a:hover, #mobile-nav ul li a.active-link {
+    color: #ff9900;
+    transform: translateX(15px); /* More pronounced slide effect */
+    text-shadow: 0 0 5px rgba(255, 153, 0, 0.6);
+}
+
+/* Re-using mobile slide-in animation from original menu.css */
+@keyframes slideInMobile {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+/* ========== Scroller (Enhanced Visuals from Cart.css & Menu-specific adjustments) ========== */
+#scroller {
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin-bottom: 7vh; /* More space below (from cart.css) */
+    padding: 3vh 0; /* More vertical padding (from cart.css) */
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 100px; /* Space below taller fixed nav (from cart.css) */
+    background: linear-gradient(90deg, transparent, rgba(255, 153, 0, 0.03), transparent); /* Even more subtle gradient (from cart.css) */
+    border-top: 1px solid rgba(255, 255, 255, 0.05); /* Subtle border (from cart.css) */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Subtle border (from cart.css) */
+}
+#scroller::-webkit-scrollbar { display: none; }
+#scroller-in {
+    display: inline-block;
+    animation: scroll 90s linear infinite; /* Slower animation for a grander feel (from cart.css) */
+}
+#scroller h4 {
+    display: inline-block;
+    font-size: clamp(8vw, 15vw, 15rem); /* Larger font size (from cart.css) */
+    font-weight: 900;
+    margin-right: 3vw; /* More spacing (from cart.css) */
+    color: rgba(255, 255, 255, 0.1); /* Very subtle, almost transparent text (from cart.css) */
+    -webkit-text-stroke: 1.5px rgba(255, 153, 0, 0.2); /* Subtle stroke for effect (from cart.css) */
+    transition: all 0.3s ease-out;
+    cursor: default; /* Changed to default as it's a decorative element here */
+    text-shadow: 0 0 15px rgba(0, 0, 0, 0.8); /* Deeper shadow (from cart.css) */
+}
+#scroller h4:hover {
+    color: rgba(255, 255, 255, 0.8); /* Brighter white on hover (from cart.css) */
+    -webkit-text-stroke: 1.5px #ff9900; /* Vibrant stroke on hover (from cart.css) */
+    text-shadow: 0 0 25px rgba(255, 153, 0, 0.8); /* Stronger glow (from cart.css) */
+}
+@media (max-width: 768px) {#scroller {
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding:  0 20px; /* More vertical padding (from cart.css) */
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 100px;
+    margin-bottom: -130px; /* Space below taller fixed nav (from cart.css) */
+    background: linear-gradient(90deg, transparent, rgba(255, 153, 0, 0.03), transparent); /* Even more subtle gradient (from cart.css) */
+    border-top: 1px solid rgba(255, 255, 255, 0.05); /* Subtle border (from cart.css) */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);}
+
+    #scroller h4 {
+    display: inline-block;
+    font-size: clamp(8vw, 15vw, 15rem); /* Larger font size (from cart.css) */
+    font-weight: 900;
+    margin-right: 3vw; /* More spacing (from cart.css) */
+    cursor: default; /* Changed to default as it's a decorative element here */
+    color: rgba(255, 255, 255, 0.8); /* Brighter white on hover (from cart.css) */
+    -webkit-text-stroke: .8px #ff9900; /* Vibrant stroke on hover (from cart.css) */
+    text-shadow: 0 0 25px rgba(255, 153, 0, 1); /* Stronger glow (from cart.css) */}
+}
+/* Scroller animation keyframes (from cart.css) */
+@keyframes scroll {
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+/* Main content wrapper padding adjustment for the new nav height */
+.menu-main-container {
+    padding-top: 7vh; /* Adjusted padding top to accommodate taller nav (from cart.css structure) */
+    flex-grow: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 7vh; /* More space before footer (from cart.css) */
+    box-sizing: border-box;
+    z-index: 10;
+    position: relative;
+}
+
+.menu-title {
+    font-weight: 800; /* Bolder heading (from cart.css h2) */
+    margin: 0;
+    padding: 1em; /* More padding (from cart.css h2) */
+    text-align: center;
+    padding-top: 5vh; /* Adjusted padding top (from cart.css h2) */
+    padding-bottom: 1vh; /* Adjusted padding bottom (from cart.css h2) */
+    font-size: clamp(3em, 7vw, 4em);
+    color: #ff9900;
+    text-shadow: 0 0 15px rgba(255, 153, 0, 0.6), 0 0 25px rgba(0, 0, 0, 0.8); /* Stronger, glowing text shadow (from cart.css h2) */
+    text-transform: uppercase;
+    animation: fadeInUp 5s cubic-bezier(0.25, 0.46, 0.45, 0.94) ease-out; /* Smoother animation curve (from cart.css h2) */
+}
+
+/* Animations from INDEX.css (re-used from cart.css) */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(60px); /* Larger initial translation */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.menu-container {
+    width: 85%; /* Slightly narrower for a more contained feel (from cart-items) */
+    max-width: 1000px; /* Increased max width (from cart-items) */
+    margin: 2vh auto 4em; /* More vertical margin (from cart-items) */
+    display: flex;
+    flex-direction: column;
+    gap: 3em; /* Increased gap between sections */
+    background-color: rgba(20, 20, 20, 0.95); /* Darker, more solid background (from cart-items) */
+    padding: 3em; /* More padding (from cart-items) */
+    border-radius: 20px; /* More rounded corners (from cart-items) */
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.7); /* Deeper, more prominent shadow (from cart-items) */
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 153, 0, 0.1); /* Consistent border (from cart-items) */
+    backdrop-filter: blur(10px); /* Stronger blur (from cart-items) */
+}
+
+.menu-section {
+    background-color: #1a1a1a; /* Even darker background (from cart-item) */
+    padding: 2.5em; /* Adjusted padding, less than container but more than item */
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); /* Subtle shadow (from cart-item) */
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.05); /* Very subtle internal border (from cart-item) */
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, background-color 0.3s ease; /* Smoother transitions (from cart-item) */
+    outline: none;
+    position: relative; /* For consistency, though not strictly needed here unless applying overall shine */
+}
+
+.menu-section:hover {
+    transform: translateY(-8px); /* More pronounced lift (from cart-item hover) */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6); /* Stronger shadow (from cart-item hover) */
+    background-color: #2a2a2a; /* Slightly lighter background on hover (from cart-item hover) */
+}
+
+
+.menu-section h2 {
+    font-weight: 700; /* Bolder */
+    color: #ffcc00; /* Slightly brighter orange for price */
+    font-size: clamp(2.2em, 5vw, 3em); /* Larger price */
+    margin: 0;
+    text-shadow: 0 0 8px rgba(255, 204, 0, 0.6); /* Glowing effect */
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.05em; /* Added letter spacing */
+    position: relative;
+    padding-bottom: 0.5em; /* Space for the underline */
+}
+
+.menu-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px; /* More defined underline */
+    height: 3px;
+    background: #ff9900; /* Solid orange underline */
+    border-radius: 2px;
+}
+@keyframes textShine {
+    0% {
+        background-position: -200%;
+    }
+    100% {
+        background-position: 200%;
+    }
+}
+
+.item-name, .empty-cart-message {
+    background: linear-gradient(90deg, #fff, #ffcc00, #fff);
+    background-size: 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textShine 7s linear infinite;
+}
+
+.menu-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5em; /* Increased gap */
+}
+
+.menu-item {
+    background-color: #1a1a1a; /* Even darker background (from cart-item) */
+    padding: 2em; /* More padding (from cart-item) */
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); /* Subtle shadow (from cart-item) */
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.05); /* Very subtle internal border (from cart-item) */
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, background-color 0.3s ease; /* Smoother transitions (from cart-item) */
+    position: relative; /* Needed for the shine effect */
+    overflow: hidden; /* Ensures the shine doesn't go outside */
+    outline: none;
+    align-items: stretch; /* Ensure children stretch vertically */
+    text-align: center; /* Center content by default for single column mobile, adjust for desktop */
+}
+
+/* Shine effect for menu items (from cart-item) */
+.menu-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%; /* Start off-screen to the left */
+    width: 60%; /* Width of the shining element */
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent); /* Subtle white shine gradient */
+    transition: left 0.5s ease-out; /* Smooth transition for the shine */
+    pointer-events: none; /* Allows clicks to pass through */
+    opacity: 0; /* Ensure it's hidden initially */
+}
+
+.menu-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.25) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: skewX(-20deg);
+}
+
+/* On hover, trigger the shine animation */
+.menu-item:hover::before {
+    animation: shineMove 0.8s ease-in-out;
+}
+
+/* Keyframes for shine motion */
+@keyframes shineMove {
+    0% {
+        left: -75%;
+    }
+    100% {
+        left: 125%;
+    }
+}
+
+.menu-item:hover {
+    transform: translateY(-8px); /* More pronounced lift (from cart-item hover) */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6); /* Stronger shadow (from cart-item hover) */
+    background-color: #2a2a2a; /* Slightly lighter background on hover (from cart-item hover) */
+}
+
+.menu-item img {
+width: auto;
+    object-fit: cover; /* Cover to fill the space without distortion */
+    height: 180px; /* Consistent height for images */
+    border-radius: 8px; /* Slightly less rounded than item border for visual interest */
+    border: 3px solid #ffcc00; /* Thicker, vibrant orange border (from cart-item img) */
+    box-shadow: 0 0 15px rgba(255, 153, 0, 0.4); /* Glow for the image (from cart-item img) */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+    filter: brightness(0.95); /* Slightly dim images for premium feel */
+    margin-bottom: 1.5em; /* Space below image */
+}
+.menu-item:hover img {
+    transform: scale(1.05); /* More pronounced zoom (from cart-item img) */
+    box-shadow: 0 0 25px rgba(255, 153, 0, 0.8); /* Brighter glow (from cart-item img) */
+    filter: brightness(1); /* Full brightness on hover */
+}
+
+
+.item-details {
+    padding: 0 1em 1em; /* Adjusted padding to better align with the overall item padding */
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em; /* Adjusted gap */
+    text-align: left; /* Align text left within details */
+}
+
+.item-name {
+    font-size: 1.4em; /* Larger font size (from cart-item name) */
+    font-weight: 600;
+    color: #fff; /* Pure white for item name (from cart-item name) */
+    letter-spacing: 0.02em;
+    margin: 0;
+    text-align: center; /* Center name within its flex container */
+}
+
+.item-description {
+    font-size: 0.95em; /* Slightly larger description */
+    color: #a0a0a0; /* Softer grey (from cart-item empty message) */
+    line-height: 1.6;
+    flex-grow: 1; /* Allows description to take available space */
+    text-align: center; /* Center description */
+}
+
+.item-actions {
+    padding: 1.5em 1em 0; /* Adjusted padding to better align with the overall item padding */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.08); /* More subtle border (from mobile-nav a) */
+    margin-top: 1.5em; /* Space between description and actions */
+}
+
+.price {
+    font-weight: 700; /* Bolder price (from cart-item price) */
+    color: #ffcc00; /* Slightly brighter orange for price (from cart-item price) */
+    font-size: 1.8em; /* Larger price (from cart-item price) */
+    margin: 0;
+    text-shadow: 0 0 8px rgba(255, 204, 0, 0.6); /* Glowing effect (from cart-item price) */
+}
+
+
+/* Reusing quantity control styles from cart.css */
+.quantity-control {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* More space */
+}
+
+/* Enhanced Mobile Shine Effects - Add these to your existing menu.css */
+
+/* Mobile Touch Shine for Menu Items */
+.menu-item {
+    /* Your existing styles remain the same */
+    position: relative;
+    overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Enhanced shine effect for menu items */
+.menu-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 80%; /* Wider shine for better visibility */
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.2), 
+        rgba(255, 153, 0, 0.1), 
+        rgba(255, 255, 255, 0.2), 
+        transparent
+    );
+    transition: left 0.6s ease-out;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 1;
+}
+
+/* Desktop hover (existing) */
+@media (hover: hover) and (pointer: fine) {
+    .menu-item:hover::before {
+        left: 100%;
+        opacity: 1;
+    }
+}
+
+/* Mobile touch shine - triggered by JavaScript */
+.menu-item.mobile-shine::before {
+    animation: mobileItemShine 0.8s ease-out forwards;
+    opacity: 1;
+}
+
+@keyframes mobileItemShine {
+    0% {
+        left: -100%;
+        opacity: 1;
+    }
+    100% {
+        left: 100%;
+        opacity: 0.8;
+    }
+}
+
+/* Enhanced Quantity Button Shine Effects */
+.quantity-control {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* More space */
+}
+
+.quantity-control button {
+    background-color: #ff9900;
+    color: #121212;
+    border: none;
+    border-radius: 50%;
+    width: 35px; /* Larger buttons */
+    height: 35px;
+    font-size: 1.3em; /* Larger font */
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(255, 153, 0, 0.4); /* Subtle shadow */
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    /* NEW: Add shine effect to the quantity buttons themselves */
+    position: relative;
+    overflow: hidden;
+    -webkit-tap-highlight-color: transparent; /* Ensure buttons don't have blue flash */
+    outline: none;
+}
+
+.quantity-control button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent); /* Brighter shine for button */
+    transition: left 0.4s ease-out; /* Slightly faster shine for button */
+    pointer-events: none;
+    opacity: 0;
+}
+
+/* Desktop Hover for quantity buttons */
+@media (hover: hover) and (pointer: fine) {
+    .quantity-control button:hover::before {
+        left: 100%;
+        opacity: 1;
+    }
+}
+
+/* Active/Tap for quantity buttons */
+.quantity-control button:active::before { /* This will work for a quick flash on tap */
+    animation: buttonShine 0.3s ease-out forwards; /* Define a quicker animation for buttons */
+    opacity: 1;
+}
+
+@keyframes buttonShine {
+    0% { left: -100%; opacity: 1; }
+    100% { left: 100%; opacity: 1; }
+}
+
+
+.quantity-control button:hover {
+    background-color: #ffb300;
+    transform: scale(1.15); /* More pronounced scale */
+    box-shadow: 0 4px 12px rgba(255, 153, 0, 0.6);
+}
+
+.quantity-control button:active {
+    background-color: #ff6f00;
+    transform: scale(0.9); /* Stronger press effect */
+}
+
+
+
+
+@keyframes mobileCartShine {
+    0% {
+        left: -120%;
+        opacity: 1;
+    }
+    100% {
+        left: 120%;
+        opacity: 0.8;
+    }
+}
+
+/* Ripple effect for enhanced mobile feedback */
+.ripple-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple-effect::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 153, 0, 0.3);
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    pointer-events: none;
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Enhanced mobile-specific styles */
+@media (max-width: 768px) {
+    /* Ensure touch targets are large enough */
+    .quantity-control button {
+        min-width: 44px;
+        min-height: 44px;
+        touch-action: manipulation;
+    }
+    
+    /* Enhanced menu item touch feedback */
+    .menu-item {
+        touch-action: manipulation;
+        transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, background-color 0.2s ease;
+    }
+    
+    /* Active state for touch */
+    .menu-item:active {
+        transform: translateY(-2px);
+        background-color: #2a2a2a;
+    }
+    
+    .quantity-control button:active {
+        transform: scale(0.95);
+        background-color: #ff6f00;
+    }
+}
+.quantity {
+    font-size: 1.2em; /* Larger quantity text */
+    font-weight: 700; /* Bolder quantity text */
+    color: #fff; /* Pure white */
+    min-width: 25px; /* Ensure space for at least one digit */
+    text-align: center;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3); /* Subtle glow */
+}
+
+/* Cart Button (from cart.css actions) */
+#cart-button {
+    z-index: 10;
+    display: inline-block;
+    background: linear-gradient(135deg, #ffcc00, #ff9800); /* Checkout button gradient */
+    color: #121212;
+    border: none;
+    border-radius: 50px;
+    /* Increased padding for larger buttons */ /* Slightly larger font size */
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(255, 153, 0, 0.4); /* Deeper shadow */
+    transition: all 0.5s ease-out; /* Smoother transition */
+    text-decoration: none;
+    text-align: center;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 0.05em; /* Added letter spacing */
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+#cart-button { position: fixed ; bottom: 20px; right: 20px; padding: 12px 20px; font-size: 1em; }
+#cart-button::before {
+    /* Enhanced gradient for cart button */
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.3), 
+        rgba(255, 204, 0, 0.15),
+        rgba(255, 255, 255, 0.3), 
+        transparent
+    );
+    border-radius: 50px; /* Match button shape */
+}
+
+#cart-button.mobile-cart-shine::before {
+    animation: mobileCartShine 0.7s ease-out forwards;
+    opacity: 1;
+}
+/* Desktop hover for main buttons */
+@media (hover: hover) and (pointer: fine) {
+    #cart-button:hover::before {
+        left: 120%; /* End further right */
+        opacity: 1;
+    }
+}
+
+/* Active/Tap for main buttons */
+#cart-button:active::before {
+    animation: buttonShine 1s ease-out forwards; /* Reuse buttonShine for quicker tap feedback */
+    opacity: 1;
+}
+
+#cart-button:hover {
+    transform: translateY(-5px); /* Stronger lift */
+    box-shadow: 0 10px 30px rgba(255, 153, 0, 0.6); /* Even deeper shadow */
+    background: linear-gradient(135deg, #ffb300, #ff6f00); /* Darker orange gradient */
+}
+
+#cart-button:active {
+    transform: translateY(-2px); /* Stronger press effect */
+}
+
+
+/* Footer Styling (Premium Refinement from Cart.css) */
+#footer {
+    background-color: #101010; /* Even darker footer background */
+    padding: 5vh 10vw; /* More padding for a grander feel */
+    color: #b0b0b0; /* Softer grey text */
+    border-top: 2px solid #ff9900;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: auto; /* Push footer to the bottom */
+    box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.4); /* Shadow at the top of the footer */
+}
+
+.footer-links {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 3em; /* More gap */
+    margin-bottom: 4vh; /* More margin */
+}
+.footer-column h3 {
+    color: #ff9900;
+    font-size: 1.3em; /* Slightly larger */
+    margin-bottom: 1.2em; /* More margin */
+    font-weight: 700; /* Bolder */
+    letter-spacing: 0.05em;
+    position: relative;
+}
+.footer-column h3::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 40px; /* Subtle underline */
+    height: 2px;
+    background: #ff9900;
+}
+.footer-column a, .footer-column p {
+    color: #b0b0b0;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 0.7em; /* More margin */
+    font-size: 0.98em; /* Slightly larger */
+    line-height: 1.7; /* Increased line height */
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+.footer-column a:hover {
+    color: #ffffff;
+    transform: translateX(5px); /* Subtle slide on hover */
+}
+.footer-bottom {
+    text-align: center;
+    margin-top: 3vh; /* More margin */
+    padding-top: 3vh; /* More padding */
+    border-top: 1px solid rgba(255, 255, 255, 0.08); /* More subtle border */
+    font-size: 0.95em; /* Slightly larger */
+    color: #808080; /* Darker grey */
+    letter-spacing: 0.02em;
+}
+
+
+/* Responsive Adjustments (Refined for Premium, pulling from Cart.css where applicable) */
+
+/* Tablet and smaller */
+@media (max-width: 1024px) {
+    #nav { height: 75px; padding: 0 30px; }
+    #nav img { height: 48px; }
+    #nav .nav-links { gap: 2rem; }
+    #nav .nav-links h4 { font-size: 1rem; }
+    #scroller h4 { font-size: clamp(7vw, 13vw, 13rem); margin-right: 2.5vw; }
+
+    .menu-main-container { padding-top: 8vh; padding-bottom: 5vh; }
+    .menu-container { width: 90%; padding: 2.5em; gap: 2.5em; }
+    .menu-section { padding: 2em; border-radius: 15px; }
+    .menu-section h2 { font-size: clamp(2em, 5.5vw, 2.8em); padding-bottom: 0.4em; }
+    .menu-section h2::after { width: 50px; height: 2px; }
+    .menu-items { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2em; }
+    .menu-item { padding: 1.5em; }
+    .menu-item img { height: 160px; margin-bottom: 1em; }
+    .item-details { padding: 0 0.8em 0.8em; }
+    .item-name { font-size: 1.3em; }
+    .item-description { font-size: 0.9em; }
+    .item-actions { padding: 1em 0.8em 0; margin-top: 1em; }
+    .price { font-size: 1.6em; }
+    .quantity-control button { width: 32px; height: 32px; font-size: 1.2em;}
+    .quantity { font-size: 1.1em;  }
+    #cart-button { position: fixed ; bottom: 20px; right: 20px; padding: 12px 20px; font-size: 1em; }
+    #footer { padding: 4vh 6vw; }
+    .footer-links { gap: 2.5em; margin-bottom: 3vh; }
+    .footer-column h3 { font-size: 1.2em; margin-bottom: 1em; }
+    .footer-column h3::after { bottom: -3px; width: 35px; }
+    .footer-column a, .footer-column p { font-size: 0.95em; margin-bottom: 0.6em; }
+    .footer-bottom { font-size: 0.9em; padding-top: 2.5vh; }
+}
+
+/* Mobile phones */
+@media (max-width: 768px) { /* This includes 767px and below */
+    body::-webkit-scrollbar { width: 6px; } /* Slightly wider scrollbar for tablets */
+    #nav { justify-content: space-between; padding: 0 25px; height: 70px; }
+    #nav img { height: 40px; min-height: 35px; }
+    #nav .nav-links { display: none; }
+    #hamburger-menu { display: block; }
+    #hamburger-menu i { font-size: 1.8rem; }
+    #cursor, #cursor-blur { display: none; } /* Ensure cursor is hidden on mobile/tablet */
+
+    #mobile-nav { max-width: 300px; padding: 80px 30px 30px; }
+    #mobile-nav i#close-menu { top: 25px; right: 25px; font-size: 1.5rem; }
+    #mobile-nav ul li { margin: 20px 0; }
+    #mobile-nav ul li a { font-size: 1.1rem; padding: 15px 0; }
+
+
+    .menu-main-container { padding-top: 6vh; padding-bottom: 4vh; }
+    .menu-title { font-size: clamp(2.2em, 10vw, 3.2em); padding-top: 12vh; padding-bottom: 2vh; }
+    .menu-container { width: 95%; padding: 1.5em; gap: 2em; margin-bottom: 3em; }
+    .menu-section { padding: 1.5em; border-radius: 12px; }
+    .menu-section h2 { font-size: clamp(1.8em, 7vw, 2.5em); margin-bottom: 1.5em; padding-bottom: 0.3em; }
+    .menu-section h2::after { width: 40px; height: 2px; }
+    .menu-items { grid-template-columns: 1fr; gap: 1.5em; } /* Single column for mobile */
+    .menu-item { padding: 1em; }
+    .menu-item img { height: 140px; margin-bottom: 0.8em; }
+    .item-details { padding: 0 0.5em 0.5em; gap: 0.6em; }
+    .item-name { font-size: 1.2em; }
+    .item-description { font-size: 0.85em; }
+    .item-actions { padding: 1em 0.5em 0; margin-top: 0.8em; flex-direction: column; gap: 0.8em; } /* Stack actions */
+    .price { font-size: 1.4em; }
+    .quantity-control { width: 100%; justify-content: center; } /* Center quantity control */
+    .quantity-control button { width: 30px; height: 30px; font-size: 1.1em; }
+    .quantity { font-size: 1em; }
+    #cart-button { position: fixed ; bottom: 20px; right: 20px; padding: 12px 20px; font-size: 1em; }
+
+    #footer { padding: 3vh 5vw; margin-top: 5vh; }
+    .footer-links { flex-direction: column; align-items: center; gap: 2em; margin-bottom: 2vh; }
+    .footer-column { text-align: center; }
+    .footer-column h3 { font-size: 1.1em; margin-bottom: 0.8em; }
+    .footer-column h3::after { left: 50%; transform: translateX(-50%); width: 30px; }
+    .footer-column a, .footer-column p { font-size: 0.88em; margin-bottom: 0.5em; }
+    .footer-bottom { font-size: 0.8em; padding-top: 2vh; }
+}
+
+/* Desktop Only Styles (pulled from Cart.css media queries) */
+@media (min-width: 769px) { /* This means 769px and above */
+    #nav .nav-links { display: flex; }
+    #hamburger-menu { display: none; }
+    #cursor, #cursor-blur { display: block; } /* Show custom cursor on desktop */
+}
+
+/* Desktop specific adjustments */
+@media (min-width: 1025px) {
+    #nav { height: 80px; padding: 0 60px; } /* Revert to specific desktop nav height/padding */
+    #nav img { height: 50px; }
+
+    #scroller h4 { margin-right: 3vw; } /* Keep consistent with cart.css for larger screens */
+
+    .menu-main-container { padding-top: 7vh; padding-bottom: 7vh; } /* Consistent with cart.css for main content */
+    .menu-container { width: 85%; max-width: 1000px; padding: 3em; gap: 3em; margin: 2vh auto 4em; } /* Revert to main cart styles for container */
+    .menu-section { padding: 2.5em; border-radius: 15px; }
+    .menu-section h2 { font-size: clamp(2.2em, 5vw, 3em); padding-bottom: 0.5em; }
+    .menu-section h2::after { width: 60px; height: 3px; }
+    .menu-items { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2.5em; }
+    .menu-item { padding: 2em; }
+    .menu-item img { height: 180px; margin-bottom: 1.5em; }
+    .item-details { padding: 0 1em 1em; }
+    .item-name { font-size: 1.4em; }
+    .item-description { font-size: 0.95em; }
+    .item-actions { padding: 1.5em 1em 0; margin-top: 1.5em; flex-direction: row; } /* Revert actions to row for desktop */
+    .price { font-size: 1.8em; }
+    .quantity-control button { width: 35px; height: 35px; font-size: 1.3em; }
+
+    #cart-button { bottom: 30px; right: 30px; padding: 16px 32px; font-size: 1.05rem; }
+
+    #footer { padding: 5vh 10vw; margin-top: auto; }
+    .footer-links { grid-template-columns: repeat(3, 1fr); gap: 3em; }
+    .footer-column { text-align: left; }
+    .footer-column h3::after { left: 0; transform: none; }
+}
